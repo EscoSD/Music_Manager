@@ -25,6 +25,7 @@ namespace Music_Manager {
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.SongPanel = new System.Windows.Forms.Panel();
 			this.ControlsPanel = new System.Windows.Forms.Panel();
 			this.ShuffleBtn = new System.Windows.Forms.Button();
@@ -32,9 +33,8 @@ namespace Music_Manager {
 			this.NextBtn = new System.Windows.Forms.Button();
 			this.PreviousBtn = new System.Windows.Forms.Button();
 			this.PlayBtn = new System.Windows.Forms.Button();
-			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.PlayImageList = new System.Windows.Forms.ImageList(this.components);
 			this.ControlsPanel.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// SongPanel
@@ -61,20 +61,22 @@ namespace Music_Manager {
 			// ShuffleBtn
 			// 
 			this.ShuffleBtn.Image = global::Music_Manager.Properties.Resources.shuffle_FILL0_wght400_GRAD0_opsz48;
-			this.ShuffleBtn.Location = new System.Drawing.Point(331, 129);
+			this.ShuffleBtn.Location = new System.Drawing.Point(51, 129);
 			this.ShuffleBtn.Name = "ShuffleBtn";
 			this.ShuffleBtn.Size = new System.Drawing.Size(64, 61);
 			this.ShuffleBtn.TabIndex = 4;
 			this.ShuffleBtn.UseVisualStyleBackColor = true;
+			this.ShuffleBtn.Click += new System.EventHandler(this.ShuffleBtn_Click);
 			// 
 			// LoopBtn
 			// 
 			this.LoopBtn.Image = global::Music_Manager.Properties.Resources.repeat_FILL0_wght400_GRAD0_opsz48;
-			this.LoopBtn.Location = new System.Drawing.Point(51, 129);
+			this.LoopBtn.Location = new System.Drawing.Point(331, 129);
 			this.LoopBtn.Name = "LoopBtn";
 			this.LoopBtn.Size = new System.Drawing.Size(64, 61);
 			this.LoopBtn.TabIndex = 3;
 			this.LoopBtn.UseVisualStyleBackColor = true;
+			this.LoopBtn.Click += new System.EventHandler(this.LoopBtn_Click);
 			// 
 			// NextBtn
 			// 
@@ -84,6 +86,7 @@ namespace Music_Manager {
 			this.NextBtn.Size = new System.Drawing.Size(64, 61);
 			this.NextBtn.TabIndex = 2;
 			this.NextBtn.UseVisualStyleBackColor = true;
+			this.NextBtn.Click += new System.EventHandler(this.NextBtn_Click);
 			// 
 			// PreviousBtn
 			// 
@@ -93,16 +96,25 @@ namespace Music_Manager {
 			this.PreviousBtn.Size = new System.Drawing.Size(64, 61);
 			this.PreviousBtn.TabIndex = 1;
 			this.PreviousBtn.UseVisualStyleBackColor = true;
+			this.PreviousBtn.Click += new System.EventHandler(this.PreviousBtn_Click);
 			// 
 			// PlayBtn
 			// 
-			this.PlayBtn.Image = global::Music_Manager.Properties.Resources.play_arrow_FILL0_wght400_GRAD0_opsz48;
+			this.PlayBtn.ImageIndex = 0;
+			this.PlayBtn.ImageList = this.PlayImageList;
 			this.PlayBtn.Location = new System.Drawing.Point(191, 129);
 			this.PlayBtn.Name = "PlayBtn";
 			this.PlayBtn.Size = new System.Drawing.Size(64, 61);
 			this.PlayBtn.TabIndex = 0;
 			this.PlayBtn.UseVisualStyleBackColor = true;
 			this.PlayBtn.Click += new System.EventHandler(this.PlayBtn_Click);
+			// 
+			// PlayImageList
+			// 
+			this.PlayImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("PlayImageList.ImageStream")));
+			this.PlayImageList.TransparentColor = System.Drawing.Color.Transparent;
+			this.PlayImageList.Images.SetKeyName(0, "play_arrow_FILL0_wght400_GRAD0_opsz48.png");
+			this.PlayImageList.Images.SetKeyName(1, "pause_FILL0_wght400_GRAD0_opsz48.png");
 			// 
 			// MainForm
 			// 
@@ -114,7 +126,6 @@ namespace Music_Manager {
 			this.Name = "MainForm";
 			this.Text = "Octavia";
 			this.ControlsPanel.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -128,7 +139,7 @@ namespace Music_Manager {
 		private System.Windows.Forms.Button NextBtn;
 		private System.Windows.Forms.Button PreviousBtn;
 		private System.Windows.Forms.Button PlayBtn;
-		private System.Windows.Forms.BindingSource bindingSource1;
+		private System.Windows.Forms.ImageList PlayImageList;
 	}
 }
 
