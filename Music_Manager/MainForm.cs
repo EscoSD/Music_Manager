@@ -46,7 +46,7 @@ namespace Music_Manager {
 		}
 
 		private void NextBtn_Click(object sender, EventArgs e) {
-
+			Console.WriteLine(musicControl.settings.volume);
 		}
 
 		private void LoopBtn_Click(object sender, EventArgs e) {
