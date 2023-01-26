@@ -12,7 +12,7 @@ namespace Music_Manager {
 			
 		}
 
-		private void PlayBtn_Click(object sender, EventArgs e) {
+		/*private void PlayBtn_Click(object sender, EventArgs e) {
 
 			Console.WriteLine(musicControl.playState);
 			switch (musicControl.playState) {
@@ -55,6 +55,6 @@ namespace Music_Manager {
 
 		private void ShuffleBtn_Click(object sender, EventArgs e) {
 
-		}
+		}*/
 	}
 }
