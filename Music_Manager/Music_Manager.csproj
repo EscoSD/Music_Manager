@@ -59,18 +59,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -79,24 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\play_arrow_FILL0_wght400_GRAD0_opsz48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\skip_next_FILL0_wght400_GRAD0_opsz48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\skip_previous_FILL0_wght400_GRAD0_opsz48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\repeat_on_FILL0_wght400_GRAD0_opsz48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\repeat_FILL0_wght400_GRAD0_opsz48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\shuffle_FILL0_wght400_GRAD0_opsz48.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="AxWMPLib">
@@ -118,9 +100,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\pause_FILL0_wght400_GRAD0_opsz48.png" />
-    <None Include="Resources\salmonete.jpg" />
-    <None Include="Resources\search_FILL0_wght400_GRAD0_opsz48.png" />
     <Content Include="Resources\What_is_wrong_with.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

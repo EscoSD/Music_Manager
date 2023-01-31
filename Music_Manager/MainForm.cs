@@ -9,52 +9,63 @@ namespace Music_Manager {
 
 		public MainForm() {
 			InitializeComponent();
-			
 		}
 
-		/*private void PlayBtn_Click(object sender, EventArgs e) {
+		private void PlayButton_Click(object sender, EventArgs e) {
 
 			Console.WriteLine(musicControl.playState);
 			switch (musicControl.playState) {
 				case WMPPlayState.wmppsPlaying:
 					musicControl.controls.pause();
-					PlayBtn.ImageIndex = 0;
+					PlayButton.ImageIndex = 0;
 					break;
 
 				case WMPPlayState.wmppsPaused:
 					musicControl.controls.play();
-					PlayBtn.ImageIndex = 1;
+					PlayButton.ImageIndex = 1;
 					break;
 
 				case WMPPlayState.wmppsReady:
 					musicControl.controls.play();
-					PlayBtn.ImageIndex = 1;
+					PlayButton.ImageIndex = 1;
 					break;
 
 				case WMPPlayState.wmppsUndefined:
 					musicControl.URL = @"C:\Users\ciclosm\Downloads\What is wrong with.mp3";
 					musicControl.controls.play();
-					PlayBtn.ImageIndex = 1;
+					PlayButton.ImageIndex = 1;
 					break;
 			}
 
 			Console.WriteLine(musicControl.status);
 		}
 
-		private void PreviousBtn_Click(object sender, EventArgs e) {
+		private void PreviousButton_Click(object sender, EventArgs e) {
 			Console.WriteLine(musicControl.status);
 		}
 
-		private void NextBtn_Click(object sender, EventArgs e) {
+		private void NextButton_Click(object sender, EventArgs e) {
 			Console.WriteLine(musicControl.settings.volume);
 		}
 
-		private void LoopBtn_Click(object sender, EventArgs e) {
+		private void LoopButton_Click(object sender, EventArgs e) {
 
 		}
 
-		private void ShuffleBtn_Click(object sender, EventArgs e) {
+		private void ShuffleButton_Click(object sender, EventArgs e) {
 
-		}*/
+		}
+
+		private void SearchPageButton_Click(object sender, EventArgs e) {
+			TabsController.SelectTab(1);
+			SearchPageButton.Enabled = false;
+			ControllerPageButton.Enabled = true;
+		}
+
+		private void ControllerPageButton_Click(object sender, EventArgs e) {
+			TabsController.SelectTab(0);
+			SearchPageButton.Enabled = true;
+			ControllerPageButton.Enabled = false;
+		}
 	}
 }
