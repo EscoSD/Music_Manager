@@ -28,11 +28,16 @@ namespace Music_Manager {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.PlayImageList = new System.Windows.Forms.ImageList(this.components);
 			this.ListsPanel = new System.Windows.Forms.Panel();
+			this.ReproListsDGV = new System.Windows.Forms.DataGridView();
 			this.SearchPage = new System.Windows.Forms.TabPage();
+			this.SongsContainer = new System.Windows.Forms.FlowLayoutPanel();
+			this.SearchButton = new System.Windows.Forms.Button();
+			this.SearchTextBox = new System.Windows.Forms.TextBox();
 			this.ControllerPage = new System.Windows.Forms.TabPage();
 			this.ImagePanel = new System.Windows.Forms.Panel();
 			this.SongImagePB = new System.Windows.Forms.PictureBox();
 			this.ControllerPanel = new System.Windows.Forms.Panel();
+			this.trackBar1 = new System.Windows.Forms.TrackBar();
 			this.ShuffleButton = new System.Windows.Forms.Button();
 			this.LoopButton = new System.Windows.Forms.Button();
 			this.PreviousButton = new System.Windows.Forms.Button();
@@ -41,20 +46,19 @@ namespace Music_Manager {
 			this.TabsController = new System.Windows.Forms.TabControl();
 			this.SearchPageButton = new System.Windows.Forms.Button();
 			this.ControllerPageButton = new System.Windows.Forms.Button();
-			this.ReproListsDGV = new System.Windows.Forms.DataGridView();
-			this.trackBar1 = new System.Windows.Forms.TrackBar();
-			this.SearchTextBox = new System.Windows.Forms.TextBox();
-			this.SearchButton = new System.Windows.Forms.Button();
-			this.SongsContainer = new System.Windows.Forms.FlowLayoutPanel();
+			this.songBox1 = new Music_Manager.SongBox();
+			this.songBox2 = new Music_Manager.SongBox();
+			this.songBox3 = new Music_Manager.SongBox();
 			this.ListsPanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ReproListsDGV)).BeginInit();
 			this.SearchPage.SuspendLayout();
+			this.SongsContainer.SuspendLayout();
 			this.ControllerPage.SuspendLayout();
 			this.ImagePanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SongImagePB)).BeginInit();
 			this.ControllerPanel.SuspendLayout();
-			this.TabsController.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.ReproListsDGV)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+			this.TabsController.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// PlayImageList
@@ -74,6 +78,18 @@ namespace Music_Manager {
 			this.ListsPanel.Size = new System.Drawing.Size(276, 589);
 			this.ListsPanel.TabIndex = 3;
 			// 
+			// ReproListsDGV
+			// 
+			this.ReproListsDGV.AllowUserToAddRows = false;
+			this.ReproListsDGV.AllowUserToDeleteRows = false;
+			this.ReproListsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.ReproListsDGV.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ReproListsDGV.Location = new System.Drawing.Point(0, 0);
+			this.ReproListsDGV.Name = "ReproListsDGV";
+			this.ReproListsDGV.ReadOnly = true;
+			this.ReproListsDGV.Size = new System.Drawing.Size(276, 589);
+			this.ReproListsDGV.TabIndex = 0;
+			// 
 			// SearchPage
 			// 
 			this.SearchPage.BackColor = System.Drawing.SystemColors.Control;
@@ -86,6 +102,34 @@ namespace Music_Manager {
 			this.SearchPage.Size = new System.Drawing.Size(618, 570);
 			this.SearchPage.TabIndex = 1;
 			this.SearchPage.Text = "tabPage2";
+			// 
+			// SongsContainer
+			// 
+			this.SongsContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.SongsContainer.Controls.Add(this.songBox1);
+			this.SongsContainer.Controls.Add(this.songBox2);
+			this.SongsContainer.Controls.Add(this.songBox3);
+			this.SongsContainer.Location = new System.Drawing.Point(6, 54);
+			this.SongsContainer.Name = "SongsContainer";
+			this.SongsContainer.Size = new System.Drawing.Size(606, 510);
+			this.SongsContainer.TabIndex = 2;
+			// 
+			// SearchButton
+			// 
+			this.SearchButton.Location = new System.Drawing.Point(112, 4);
+			this.SearchButton.Name = "SearchButton";
+			this.SearchButton.Size = new System.Drawing.Size(75, 23);
+			this.SearchButton.TabIndex = 1;
+			this.SearchButton.UseVisualStyleBackColor = true;
+			// 
+			// SearchTextBox
+			// 
+			this.SearchTextBox.Location = new System.Drawing.Point(6, 6);
+			this.SearchTextBox.Name = "SearchTextBox";
+			this.SearchTextBox.Size = new System.Drawing.Size(100, 20);
+			this.SearchTextBox.TabIndex = 0;
 			// 
 			// ControllerPage
 			// 
@@ -138,6 +182,14 @@ namespace Music_Manager {
 			this.ControllerPanel.Name = "ControllerPanel";
 			this.ControllerPanel.Size = new System.Drawing.Size(606, 217);
 			this.ControllerPanel.TabIndex = 0;
+			// 
+			// trackBar1
+			// 
+			this.trackBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.trackBar1.Location = new System.Drawing.Point(137, 50);
+			this.trackBar1.Name = "trackBar1";
+			this.trackBar1.Size = new System.Drawing.Size(314, 45);
+			this.trackBar1.TabIndex = 6;
 			// 
 			// ShuffleButton
 			// 
@@ -241,47 +293,26 @@ namespace Music_Manager {
 			this.ControllerPageButton.UseVisualStyleBackColor = true;
 			this.ControllerPageButton.Click += new System.EventHandler(this.ControllerPageButton_Click);
 			// 
-			// ReproListsDGV
+			// songBox1
 			// 
-			this.ReproListsDGV.AllowUserToAddRows = false;
-			this.ReproListsDGV.AllowUserToDeleteRows = false;
-			this.ReproListsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.ReproListsDGV.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ReproListsDGV.Location = new System.Drawing.Point(0, 0);
-			this.ReproListsDGV.Name = "ReproListsDGV";
-			this.ReproListsDGV.ReadOnly = true;
-			this.ReproListsDGV.Size = new System.Drawing.Size(276, 589);
-			this.ReproListsDGV.TabIndex = 0;
+			this.songBox1.Location = new System.Drawing.Point(3, 3);
+			this.songBox1.Name = "songBox1";
+			this.songBox1.Size = new System.Drawing.Size(200, 145);
+			this.songBox1.TabIndex = 0;
 			// 
-			// trackBar1
+			// songBox2
 			// 
-			this.trackBar1.Location = new System.Drawing.Point(137, 50);
-			this.trackBar1.Name = "trackBar1";
-			this.trackBar1.Size = new System.Drawing.Size(314, 45);
-			this.trackBar1.TabIndex = 6;
+			this.songBox2.Location = new System.Drawing.Point(209, 3);
+			this.songBox2.Name = "songBox2";
+			this.songBox2.Size = new System.Drawing.Size(200, 145);
+			this.songBox2.TabIndex = 1;
 			// 
-			// SearchTextBox
+			// songBox3
 			// 
-			this.SearchTextBox.Location = new System.Drawing.Point(6, 6);
-			this.SearchTextBox.Name = "SearchTextBox";
-			this.SearchTextBox.Size = new System.Drawing.Size(100, 20);
-			this.SearchTextBox.TabIndex = 0;
-			// 
-			// SearchButton
-			// 
-			this.SearchButton.Location = new System.Drawing.Point(112, 4);
-			this.SearchButton.Name = "SearchButton";
-			this.SearchButton.Size = new System.Drawing.Size(75, 23);
-			this.SearchButton.TabIndex = 1;
-			this.SearchButton.Text = "button1";
-			this.SearchButton.UseVisualStyleBackColor = true;
-			// 
-			// SongsContainer
-			// 
-			this.SongsContainer.Location = new System.Drawing.Point(7, 54);
-			this.SongsContainer.Name = "SongsContainer";
-			this.SongsContainer.Size = new System.Drawing.Size(605, 510);
-			this.SongsContainer.TabIndex = 2;
+			this.songBox3.Location = new System.Drawing.Point(3, 154);
+			this.songBox3.Name = "songBox3";
+			this.songBox3.Size = new System.Drawing.Size(200, 145);
+			this.songBox3.TabIndex = 2;
 			// 
 			// MainForm
 			// 
@@ -297,16 +328,17 @@ namespace Music_Manager {
 			this.Name = "MainForm";
 			this.Text = "Octavia";
 			this.ListsPanel.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.ReproListsDGV)).EndInit();
 			this.SearchPage.ResumeLayout(false);
 			this.SearchPage.PerformLayout();
+			this.SongsContainer.ResumeLayout(false);
 			this.ControllerPage.ResumeLayout(false);
 			this.ImagePanel.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.SongImagePB)).EndInit();
 			this.ControllerPanel.ResumeLayout(false);
 			this.ControllerPanel.PerformLayout();
-			this.TabsController.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.ReproListsDGV)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+			this.TabsController.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -332,6 +364,9 @@ namespace Music_Manager {
 		private System.Windows.Forms.FlowLayoutPanel SongsContainer;
 		private System.Windows.Forms.Button SearchButton;
 		private System.Windows.Forms.TextBox SearchTextBox;
+		private SongBox songBox1;
+		private SongBox songBox2;
+		private SongBox songBox3;
 	}
 }
 
