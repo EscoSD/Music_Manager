@@ -30,6 +30,7 @@ namespace Music_Manager {
 			this.ListsPanel = new System.Windows.Forms.Panel();
 			this.ReproListsDGV = new System.Windows.Forms.DataGridView();
 			this.SearchPage = new System.Windows.Forms.TabPage();
+			this.DatabaseAddingButton = new System.Windows.Forms.Button();
 			this.SongsContainer = new System.Windows.Forms.FlowLayoutPanel();
 			this.SearchButton = new System.Windows.Forms.Button();
 			this.SearchTextBox = new System.Windows.Forms.TextBox();
@@ -37,7 +38,7 @@ namespace Music_Manager {
 			this.ImagePanel = new System.Windows.Forms.Panel();
 			this.SongImagePB = new System.Windows.Forms.PictureBox();
 			this.ControllerPanel = new System.Windows.Forms.Panel();
-			this.trackBar1 = new System.Windows.Forms.TrackBar();
+			this.DurationTrackBar = new System.Windows.Forms.TrackBar();
 			this.ShuffleButton = new System.Windows.Forms.Button();
 			this.LoopButton = new System.Windows.Forms.Button();
 			this.PreviousButton = new System.Windows.Forms.Button();
@@ -46,19 +47,17 @@ namespace Music_Manager {
 			this.TabsController = new System.Windows.Forms.TabControl();
 			this.SearchPageButton = new System.Windows.Forms.Button();
 			this.ControllerPageButton = new System.Windows.Forms.Button();
-			this.songBox1 = new Music_Manager.SongBox();
-			this.songBox2 = new Music_Manager.SongBox();
-			this.songBox3 = new Music_Manager.SongBox();
+			this.VolumeTrackBar = new System.Windows.Forms.TrackBar();
 			this.ListsPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ReproListsDGV)).BeginInit();
 			this.SearchPage.SuspendLayout();
-			this.SongsContainer.SuspendLayout();
 			this.ControllerPage.SuspendLayout();
 			this.ImagePanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SongImagePB)).BeginInit();
 			this.ControllerPanel.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DurationTrackBar)).BeginInit();
 			this.TabsController.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.VolumeTrackBar)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// PlayImageList
@@ -93,6 +92,7 @@ namespace Music_Manager {
 			// SearchPage
 			// 
 			this.SearchPage.BackColor = System.Drawing.SystemColors.Control;
+			this.SearchPage.Controls.Add(this.DatabaseAddingButton);
 			this.SearchPage.Controls.Add(this.SongsContainer);
 			this.SearchPage.Controls.Add(this.SearchButton);
 			this.SearchPage.Controls.Add(this.SearchTextBox);
@@ -103,14 +103,23 @@ namespace Music_Manager {
 			this.SearchPage.TabIndex = 1;
 			this.SearchPage.Text = "tabPage2";
 			// 
+			// DatabaseAddingButton
+			// 
+			this.DatabaseAddingButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.DatabaseAddingButton.Location = new System.Drawing.Point(546, 7);
+			this.DatabaseAddingButton.Name = "DatabaseAddingButton";
+			this.DatabaseAddingButton.Size = new System.Drawing.Size(65, 41);
+			this.DatabaseAddingButton.TabIndex = 3;
+			this.DatabaseAddingButton.Text = "Añadir";
+			this.DatabaseAddingButton.UseVisualStyleBackColor = true;
+			this.DatabaseAddingButton.Click += new System.EventHandler(this.DatabaseAddingButton_Click);
+			// 
 			// SongsContainer
 			// 
 			this.SongsContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.SongsContainer.Controls.Add(this.songBox1);
-			this.SongsContainer.Controls.Add(this.songBox2);
-			this.SongsContainer.Controls.Add(this.songBox3);
+			this.SongsContainer.AutoScroll = true;
 			this.SongsContainer.Location = new System.Drawing.Point(6, 54);
 			this.SongsContainer.Name = "SongsContainer";
 			this.SongsContainer.Size = new System.Drawing.Size(606, 510);
@@ -172,7 +181,8 @@ namespace Music_Manager {
 			this.ControllerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.ControllerPanel.BackColor = System.Drawing.SystemColors.Control;
-			this.ControllerPanel.Controls.Add(this.trackBar1);
+			this.ControllerPanel.Controls.Add(this.VolumeTrackBar);
+			this.ControllerPanel.Controls.Add(this.DurationTrackBar);
 			this.ControllerPanel.Controls.Add(this.ShuffleButton);
 			this.ControllerPanel.Controls.Add(this.LoopButton);
 			this.ControllerPanel.Controls.Add(this.PreviousButton);
@@ -183,13 +193,13 @@ namespace Music_Manager {
 			this.ControllerPanel.Size = new System.Drawing.Size(606, 217);
 			this.ControllerPanel.TabIndex = 0;
 			// 
-			// trackBar1
+			// DurationTrackBar
 			// 
-			this.trackBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.trackBar1.Location = new System.Drawing.Point(137, 50);
-			this.trackBar1.Name = "trackBar1";
-			this.trackBar1.Size = new System.Drawing.Size(314, 45);
-			this.trackBar1.TabIndex = 6;
+			this.DurationTrackBar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+			this.DurationTrackBar.Location = new System.Drawing.Point(137, 50);
+			this.DurationTrackBar.Name = "DurationTrackBar";
+			this.DurationTrackBar.Size = new System.Drawing.Size(323, 45);
+			this.DurationTrackBar.TabIndex = 6;
 			// 
 			// ShuffleButton
 			// 
@@ -293,26 +303,17 @@ namespace Music_Manager {
 			this.ControllerPageButton.UseVisualStyleBackColor = true;
 			this.ControllerPageButton.Click += new System.EventHandler(this.ControllerPageButton_Click);
 			// 
-			// songBox1
+			// VolumeTrackBar
 			// 
-			this.songBox1.Location = new System.Drawing.Point(3, 3);
-			this.songBox1.Name = "songBox1";
-			this.songBox1.Size = new System.Drawing.Size(200, 145);
-			this.songBox1.TabIndex = 0;
-			// 
-			// songBox2
-			// 
-			this.songBox2.Location = new System.Drawing.Point(209, 3);
-			this.songBox2.Name = "songBox2";
-			this.songBox2.Size = new System.Drawing.Size(200, 145);
-			this.songBox2.TabIndex = 1;
-			// 
-			// songBox3
-			// 
-			this.songBox3.Location = new System.Drawing.Point(3, 154);
-			this.songBox3.Name = "songBox3";
-			this.songBox3.Size = new System.Drawing.Size(200, 145);
-			this.songBox3.TabIndex = 2;
+			this.VolumeTrackBar.Location = new System.Drawing.Point(558, 86);
+			this.VolumeTrackBar.Maximum = 100;
+			this.VolumeTrackBar.Name = "VolumeTrackBar";
+			this.VolumeTrackBar.Orientation = System.Windows.Forms.Orientation.Vertical;
+			this.VolumeTrackBar.Size = new System.Drawing.Size(45, 104);
+			this.VolumeTrackBar.TabIndex = 7;
+			this.VolumeTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.VolumeTrackBar.Value = 50;
+			this.VolumeTrackBar.ValueChanged += new System.EventHandler(this.VolumeTrackBar_ValueChanged);
 			// 
 			// MainForm
 			// 
@@ -331,14 +332,14 @@ namespace Music_Manager {
 			((System.ComponentModel.ISupportInitialize)(this.ReproListsDGV)).EndInit();
 			this.SearchPage.ResumeLayout(false);
 			this.SearchPage.PerformLayout();
-			this.SongsContainer.ResumeLayout(false);
 			this.ControllerPage.ResumeLayout(false);
 			this.ImagePanel.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.SongImagePB)).EndInit();
 			this.ControllerPanel.ResumeLayout(false);
 			this.ControllerPanel.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DurationTrackBar)).EndInit();
 			this.TabsController.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.VolumeTrackBar)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -360,13 +361,12 @@ namespace Music_Manager {
 		private System.Windows.Forms.TabControl TabsController;
 		private System.Windows.Forms.Button PlayButton;
 		private System.Windows.Forms.DataGridView ReproListsDGV;
-		private System.Windows.Forms.TrackBar trackBar1;
+		private System.Windows.Forms.TrackBar DurationTrackBar;
+		private System.Windows.Forms.TextBox SearchTextBox;
 		private System.Windows.Forms.FlowLayoutPanel SongsContainer;
 		private System.Windows.Forms.Button SearchButton;
-		private System.Windows.Forms.TextBox SearchTextBox;
-		private SongBox songBox1;
-		private SongBox songBox2;
-		private SongBox songBox3;
+		private System.Windows.Forms.Button DatabaseAddingButton;
+		private System.Windows.Forms.TrackBar VolumeTrackBar;
 	}
 }
 
