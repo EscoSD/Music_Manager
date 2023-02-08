@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace Music_Manager {
 	public partial class SongBox : UserControl {
 
-		public int SongId { get; }
+		public int SongId { get; set; }
 		public String SongName { get; }
 		public byte[] Image { get; }
 		public byte[] Music { get; }
@@ -48,8 +48,8 @@ namespace Music_Manager {
 
 		public static Bitmap ByteToImage(byte[] blob) {
 			MemoryStream mStream = new MemoryStream();
-			byte[] pData = blob;
-			mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
+			byte[] data = blob;
+			mStream.Write(data, 0, Convert.ToInt32(data.Length));
 			Bitmap bm = new Bitmap(mStream, false);
 			mStream.Dispose();
 			return bm;

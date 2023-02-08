@@ -16,6 +16,8 @@ namespace Music_Manager {
 
 			musicControl.PlayStateChange += MusicStateController;
 			musicControl.settings.volume = VolumeTrackBar.Value;
+			//musicControl.DurationUnitChange += new WMPLib._WMPOCXEvents_DurationUnitChangeEventHandler(DurationTracker);
+			
 
 			builder.Server = "192.168.1.22";
 			builder.UserID = "esco";
@@ -26,7 +28,16 @@ namespace Music_Manager {
 		}
 
 		private void PlayButton_Click(object sender, EventArgs e) {
+			switch (musicControl.playState) {
+				case WMPPlayState.wmppsPlaying:
+					musicControl.controls.pause();
+					break;
+				case WMPPlayState.wmppsPaused:
+					musicControl.controls.play();
+					break;
+			}
 
+			Console.WriteLine(musicControl.playState);
 		}
 
 		private void PreviousButton_Click(object sender, EventArgs e) {
@@ -58,22 +69,26 @@ namespace Music_Manager {
 		}
 
 		private void DatabaseAddingButton_Click(object sender, EventArgs e) {
-			SongBox songBox = new SongBox();
-			songBox.PlayButtonClickHandler += new System.EventHandler(this.SongBoxPlayButton_Click);
-			songBox.OptionsButtonClickHandler += new System.EventHandler(this.OptionsBoxPlayButton_Click);
-			SongsContainer.Controls.Add(songBox);
+
+			using (NewSongForm songForm = new NewSongForm()) {
+				if (songForm.ShowDialog() == DialogResult.OK) {
+					songForm.SongBoxControl.PlayButtonClickHandler += new System.EventHandler(this.SongBoxPlayButton_Click);
+					songForm.SongBoxControl.OptionsButtonClickHandler += new System.EventHandler(this.OptionsBoxPlayButton_Click);
+					SongsContainer.Controls.Add(songForm.SongBoxControl);
+				}
+					
+			}
+			
 		}
 
 		private void SongBoxPlayButton_Click(object sender, EventArgs e) {
-			//sender = (SongBox)sender;
-			MusicReproduction(((SongBox) sender).Music);
+			MusicReproduction(((SongBox) sender).Music, ((SongBox)sender).Image);
 		}
 
 		private void OptionsBoxPlayButton_Click(object sender, EventArgs e) {
 		}
 
 		private void ChargeFlowLayout() {
-			
 			using (conn = new MySqlConnection(builder.ToString())) {
 				conn.Open();
 
@@ -102,45 +117,66 @@ namespace Music_Manager {
 			Console.WriteLine(musicControl.playState);
 			switch (musicControl.playState) {
 				case WMPPlayState.wmppsPlaying:
-					PlayButton.ImageIndex = 0;
+					PlayButton.ImageIndex = 1;
 					break;
 
 				case WMPPlayState.wmppsPaused:
-					PlayButton.ImageIndex = 1;
+					PlayButton.ImageIndex = 0;
 					break;
 
 				case WMPPlayState.wmppsReady:
-					PlayButton.ImageIndex = 1;
+					PlayButton.ImageIndex = 0;
 					break;
 
 				case WMPPlayState.wmppsUndefined:
-					PlayButton.ImageIndex = 1;
+					PlayButton.ImageIndex = 0;
 					break;
 			}
 
 			Console.WriteLine(musicControl.status);
 		}
 
-		private void MusicReproduction(byte[] music) {
+		private void MusicReproduction(byte[] music, byte[] image) {
 
-			//if (musicControl.playState != WMPPlayState.)
-			// ASEGURARASE DE QUE NO SE ESTÁ REPRODUCIENDO NADA PARA PODER INICIAR UNA SEGUNDA CANCIÓN
+			Console.WriteLine("Reproduction");
 
-			Console.WriteLine("Reproooo");
+			//string tempFile = @"..\..\Resources\tempFile.mp3";
+			string tempFile = Path.GetTempFileName();
 
-			string tempFile = "tempFile.mp3";
+			SongImagePB.Image = SongBox.ByteToImage(image);
+
+			//File.Move(tempFile, Path.ChangeExtension(tempFile, ".mp3"));
+			Console.WriteLine(tempFile);
 			File.WriteAllBytes(tempFile, music);
-			File.Move(tempFile, Path.ChangeExtension(tempFile, ".mp3"));
 
 			// Reproducir el archivo temporal
 			musicControl.URL = tempFile;
+
 			musicControl.controls.play();
+
+			DurationTrackBar.Maximum = (int)musicControl.currentMedia.duration;
+			Console.WriteLine(DurationTrackBar.Maximum);
+
+			Console.WriteLine(tempFile);
 		}
 
 		private void VolumeTrackBar_ValueChanged(object sender, EventArgs e) {
 			musicControl.settings.volume = VolumeTrackBar.Value;
 		}
+
+		/*private void DurationTracker(int newDurationUnit) {
+			Console.WriteLine(newDurationUnit + " pos");
+			DurationTrackBar.Value = newDurationUnit;
+		}*/
+
+		private void FilterTextBox_TextChanged(object sender, EventArgs e) {
+			if (!String.IsNullOrEmpty(FilterTextBox.Text))
+				foreach (SongBox songBox in SongsContainer.Controls)
+					songBox.Visible = songBox.SongName.ToLower().Contains(FilterTextBox.Text.ToLower());
+
+			else
+				foreach (SongBox songBox in SongsContainer.Controls)
+					songBox.Visible = true;
+		}
 	}
-
-
 }

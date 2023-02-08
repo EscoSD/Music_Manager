@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewSongForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewSongForm.Designer.cs">
+      <DependentUpon>NewSongForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,9 +67,11 @@
     <Compile Include="SongBox.Designer.cs">
       <DependentUpon>SongBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="SQLManagement .cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewSongForm.resx">
+      <DependentUpon>NewSongForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
