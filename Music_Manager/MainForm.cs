@@ -7,45 +7,44 @@ using System.IO;
 namespace Music_Manager {
 	public partial class MainForm : Form {
 
-		public WindowsMediaPlayer musicControl = new WindowsMediaPlayer();
+		public WindowsMediaPlayer musicPlayer = new WindowsMediaPlayer();
 		private readonly MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
 		private MySqlConnection conn;
 
 		public MainForm() {
 			InitializeComponent();
 
-			musicControl.PlayStateChange += MusicStateController;
-			musicControl.settings.volume = VolumeTrackBar.Value;
+			musicPlayer.PlayStateChange += MusicStateController;
+			musicPlayer.settings.volume = VolumeTrackBar.Value;
 			//musicControl.DurationUnitChange += new WMPLib._WMPOCXEvents_DurationUnitChangeEventHandler(DurationTracker);
-			
 
-			builder.Server = "192.168.1.22";
-			builder.UserID = "esco";
-			builder.Password = "lalimonada47";
+			builder.Server = "localhost";
+			builder.UserID = "root";
+			builder.Password = "";
 			builder.Database= "DINT_DATABASE";
 
 			ChargeFlowLayout();
 		}
 
 		private void PlayButton_Click(object sender, EventArgs e) {
-			switch (musicControl.playState) {
+			switch (musicPlayer.playState) {
 				case WMPPlayState.wmppsPlaying:
-					musicControl.controls.pause();
+					musicPlayer.controls.pause();
 					break;
 				case WMPPlayState.wmppsPaused:
-					musicControl.controls.play();
+					musicPlayer.controls.play();
 					break;
 			}
 
-			Console.WriteLine(musicControl.playState);
+			Console.WriteLine(musicPlayer.playState);
 		}
 
 		private void PreviousButton_Click(object sender, EventArgs e) {
-			Console.WriteLine(musicControl.status);
+			Console.WriteLine(musicPlayer.status);
 		}
 
 		private void NextButton_Click(object sender, EventArgs e) {
-			Console.WriteLine(musicControl.settings.volume);
+			Console.WriteLine(musicPlayer.settings.volume);
 		}
 
 		private void LoopButton_Click(object sender, EventArgs e) {
@@ -69,20 +68,16 @@ namespace Music_Manager {
 		}
 
 		private void DatabaseAddingButton_Click(object sender, EventArgs e) {
-
-			using (NewSongForm songForm = new NewSongForm()) {
+			using (NewSongForm songForm = new NewSongForm())
 				if (songForm.ShowDialog() == DialogResult.OK) {
 					songForm.SongBoxControl.PlayButtonClickHandler += new System.EventHandler(this.SongBoxPlayButton_Click);
 					songForm.SongBoxControl.OptionsButtonClickHandler += new System.EventHandler(this.OptionsBoxPlayButton_Click);
 					SongsContainer.Controls.Add(songForm.SongBoxControl);
 				}
-					
-			}
-			
 		}
 
 		private void SongBoxPlayButton_Click(object sender, EventArgs e) {
-			MusicReproduction(((SongBox) sender).Music, ((SongBox)sender).Image);
+			MusicReproduction(((SongBox) sender).Music, ((SongBox)sender).Image, ((SongBox)sender).SongName);
 		}
 
 		private void OptionsBoxPlayButton_Click(object sender, EventArgs e) {
@@ -114,8 +109,8 @@ namespace Music_Manager {
 
 		private void MusicStateController(int newState) {
 
-			Console.WriteLine(musicControl.playState);
-			switch (musicControl.playState) {
+			Console.WriteLine(musicPlayer.playState);
+			switch (musicPlayer.playState) {
 				case WMPPlayState.wmppsPlaying:
 					PlayButton.ImageIndex = 1;
 					break;
@@ -133,10 +128,10 @@ namespace Music_Manager {
 					break;
 			}
 
-			Console.WriteLine(musicControl.status);
+			Console.WriteLine(musicPlayer.status);
 		}
 
-		private void MusicReproduction(byte[] music, byte[] image) {
+		private void MusicReproduction(byte[] music, byte[] image, String name) {
 
 			Console.WriteLine("Reproduction");
 
@@ -144,24 +139,25 @@ namespace Music_Manager {
 			string tempFile = Path.GetTempFileName();
 
 			SongImagePB.Image = SongBox.ByteToImage(image);
+			SongNameLabel.Text = name;
 
 			//File.Move(tempFile, Path.ChangeExtension(tempFile, ".mp3"));
 			Console.WriteLine(tempFile);
 			File.WriteAllBytes(tempFile, music);
 
 			// Reproducir el archivo temporal
-			musicControl.URL = tempFile;
+			//musicPlayer.currentPlaylist.appendItem(musicPlayer.newMedia(tempFile));
+			musicPlayer.URL = tempFile;
+			musicPlayer.controls.play();
 
-			musicControl.controls.play();
-
-			DurationTrackBar.Maximum = (int)musicControl.currentMedia.duration;
+			DurationTrackBar.Maximum = (int)musicPlayer.currentMedia.duration;
 			Console.WriteLine(DurationTrackBar.Maximum);
 
 			Console.WriteLine(tempFile);
 		}
 
 		private void VolumeTrackBar_ValueChanged(object sender, EventArgs e) {
-			musicControl.settings.volume = VolumeTrackBar.Value;
+			musicPlayer.settings.volume = VolumeTrackBar.Value;
 		}
 
 		/*private void DurationTracker(int newDurationUnit) {
