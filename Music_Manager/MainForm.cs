@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using WMPLib;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Drawing;
 
 namespace Music_Manager {
 	public partial class MainForm : Form {
@@ -18,10 +19,10 @@ namespace Music_Manager {
 			musicPlayer.settings.volume = VolumeTrackBar.Value;
 			//musicControl.DurationUnitChange += new WMPLib._WMPOCXEvents_DurationUnitChangeEventHandler(DurationTracker);
 
-			builder.Server = "localhost";
-			builder.UserID = "root";
-			builder.Password = "";
-			builder.Database= "DINT_DATABASE";
+			builder.Server = "192.168.1.22";
+			builder.UserID = "esco";
+			builder.Password = "lalimonada47";
+			builder.Database = "DINT_DATABASE";
 
 			ChargeFlowLayout();
 		}
@@ -173,6 +174,31 @@ namespace Music_Manager {
 			else
 				foreach (SongBox songBox in SongsContainer.Controls)
 					songBox.Visible = true;
+		}
+
+		private void NewPlaylistButton_Click(object sender, EventArgs e) {
+			using (NewPlaylistForm playlistForm = new NewPlaylistForm()) {
+				if (playlistForm.ShowDialog() == DialogResult.OK)
+					PlaylistsDGV.Rows.Add(
+							playlistForm.PlaylistName
+					);
+
+				using (conn = new MySqlConnection(builder.ToString())) {
+					conn.Open();
+					string sql = "INSERT INTO Playlist (name) values(@name);";
+
+					using (MySqlCommand command = new MySqlCommand(sql, conn)) {
+						command.Parameters.Add("@name", MySqlDbType.Text).Value = playlistForm.PlaylistName;
+						command.ExecuteNonQuery();
+					}
+				}
+			}
+		}
+
+		private void PlaylistsDGV_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+			// CREAR UNA LISTA DE REPRODUCCION PARA EL WINDOWSMEDIAPLAYER
+
+
 		}
 	}
 }

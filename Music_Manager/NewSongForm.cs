@@ -20,9 +20,9 @@ namespace Music_Manager {
 		public NewSongForm() {
 			InitializeComponent();
 
-			builder.Server = "localhost";
-			builder.UserID = "root";
-			builder.Password = "";
+			builder.Server = "192.168.1.22";
+			builder.UserID = "esco";
+			builder.Password = "lalimonada47";
 			builder.Database = "DINT_DATABASE";
 		}
 

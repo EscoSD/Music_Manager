@@ -28,7 +28,10 @@ namespace Music_Manager {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.PlayImageList = new System.Windows.Forms.ImageList(this.components);
 			this.ListsPanel = new System.Windows.Forms.Panel();
-			this.ReproListsDGV = new System.Windows.Forms.DataGridView();
+			this.PlaylistsDGV = new System.Windows.Forms.DataGridView();
+			this.ListasColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.EditColumn = new System.Windows.Forms.DataGridViewImageColumn();
+			this.DeleteColumn = new System.Windows.Forms.DataGridViewImageColumn();
 			this.SearchPage = new System.Windows.Forms.TabPage();
 			this.DatabaseAddingButton = new System.Windows.Forms.Button();
 			this.SongsContainer = new System.Windows.Forms.FlowLayoutPanel();
@@ -51,8 +54,9 @@ namespace Music_Manager {
 			this.TabsController = new System.Windows.Forms.TabControl();
 			this.SearchPageButton = new System.Windows.Forms.Button();
 			this.ControllerPageButton = new System.Windows.Forms.Button();
+			this.NewPlaylistButton = new System.Windows.Forms.Button();
 			this.ListsPanel.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.ReproListsDGV)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.PlaylistsDGV)).BeginInit();
 			this.SearchPage.SuspendLayout();
 			this.ControllerPage.SuspendLayout();
 			this.ImagePanel.SuspendLayout();
@@ -75,23 +79,57 @@ namespace Music_Manager {
 			// 
 			this.ListsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-			this.ListsPanel.Controls.Add(this.ReproListsDGV);
-			this.ListsPanel.Location = new System.Drawing.Point(13, 36);
+			this.ListsPanel.Controls.Add(this.PlaylistsDGV);
+			this.ListsPanel.Location = new System.Drawing.Point(13, 99);
 			this.ListsPanel.Name = "ListsPanel";
-			this.ListsPanel.Size = new System.Drawing.Size(276, 589);
+			this.ListsPanel.Size = new System.Drawing.Size(276, 526);
 			this.ListsPanel.TabIndex = 3;
 			// 
-			// ReproListsDGV
+			// PlaylistsDGV
 			// 
-			this.ReproListsDGV.AllowUserToAddRows = false;
-			this.ReproListsDGV.AllowUserToDeleteRows = false;
-			this.ReproListsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.ReproListsDGV.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ReproListsDGV.Location = new System.Drawing.Point(0, 0);
-			this.ReproListsDGV.Name = "ReproListsDGV";
-			this.ReproListsDGV.ReadOnly = true;
-			this.ReproListsDGV.Size = new System.Drawing.Size(276, 589);
-			this.ReproListsDGV.TabIndex = 0;
+			this.PlaylistsDGV.AllowUserToAddRows = false;
+			this.PlaylistsDGV.AllowUserToDeleteRows = false;
+			this.PlaylistsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.PlaylistsDGV.ColumnHeadersVisible = false;
+			this.PlaylistsDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ListasColumn,
+            this.EditColumn,
+            this.DeleteColumn});
+			this.PlaylistsDGV.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.PlaylistsDGV.Location = new System.Drawing.Point(0, 0);
+			this.PlaylistsDGV.Name = "PlaylistsDGV";
+			this.PlaylistsDGV.ReadOnly = true;
+			this.PlaylistsDGV.RowHeadersVisible = false;
+			this.PlaylistsDGV.Size = new System.Drawing.Size(276, 526);
+			this.PlaylistsDGV.TabIndex = 0;
+			this.PlaylistsDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PlaylistsDGV_CellContentClick);
+			// 
+			// ListasColumn
+			// 
+			this.ListasColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.ListasColumn.HeaderText = "Listas";
+			this.ListasColumn.Name = "ListasColumn";
+			this.ListasColumn.ReadOnly = true;
+			// 
+			// EditColumn
+			// 
+			this.EditColumn.HeaderText = "Editar";
+			this.EditColumn.Image = ((System.Drawing.Image)(resources.GetObject("EditColumn.Image")));
+			this.EditColumn.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+			this.EditColumn.Name = "EditColumn";
+			this.EditColumn.ReadOnly = true;
+			this.EditColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.EditColumn.Width = 30;
+			// 
+			// DeleteColumn
+			// 
+			this.DeleteColumn.HeaderText = "Delete";
+			this.DeleteColumn.Image = ((System.Drawing.Image)(resources.GetObject("DeleteColumn.Image")));
+			this.DeleteColumn.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+			this.DeleteColumn.Name = "DeleteColumn";
+			this.DeleteColumn.ReadOnly = true;
+			this.DeleteColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.DeleteColumn.Width = 30;
 			// 
 			// SearchPage
 			// 
@@ -359,12 +397,23 @@ namespace Music_Manager {
 			this.ControllerPageButton.UseVisualStyleBackColor = true;
 			this.ControllerPageButton.Click += new System.EventHandler(this.ControllerPageButton_Click);
 			// 
+			// NewPlaylistButton
+			// 
+			this.NewPlaylistButton.Location = new System.Drawing.Point(13, 55);
+			this.NewPlaylistButton.Name = "NewPlaylistButton";
+			this.NewPlaylistButton.Size = new System.Drawing.Size(64, 38);
+			this.NewPlaylistButton.TabIndex = 4;
+			this.NewPlaylistButton.Text = "Nueva Lista";
+			this.NewPlaylistButton.UseVisualStyleBackColor = true;
+			this.NewPlaylistButton.Click += new System.EventHandler(this.NewPlaylistButton_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Control;
 			this.ClientSize = new System.Drawing.Size(933, 641);
+			this.Controls.Add(this.NewPlaylistButton);
 			this.Controls.Add(this.ListsPanel);
 			this.Controls.Add(this.SearchPageButton);
 			this.Controls.Add(this.ControllerPageButton);
@@ -373,7 +422,7 @@ namespace Music_Manager {
 			this.Name = "MainForm";
 			this.Text = "Octavia";
 			this.ListsPanel.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.ReproListsDGV)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.PlaylistsDGV)).EndInit();
 			this.SearchPage.ResumeLayout(false);
 			this.SearchPage.PerformLayout();
 			this.ControllerPage.ResumeLayout(false);
@@ -405,7 +454,7 @@ namespace Music_Manager {
 		private System.Windows.Forms.Button NextButton;
 		private System.Windows.Forms.TabControl TabsController;
 		private System.Windows.Forms.Button PlayButton;
-		private System.Windows.Forms.DataGridView ReproListsDGV;
+		private System.Windows.Forms.DataGridView PlaylistsDGV;
 		private System.Windows.Forms.TrackBar DurationTrackBar;
 		private System.Windows.Forms.TextBox FilterTextBox;
 		private System.Windows.Forms.FlowLayoutPanel SongsContainer;
@@ -415,6 +464,10 @@ namespace Music_Manager {
 		private System.Windows.Forms.Label SongCurrentTimeLabel;
 		private System.Windows.Forms.PictureBox VolumePictureBox;
 		private System.Windows.Forms.Label SongNameLabel;
+		private System.Windows.Forms.Button NewPlaylistButton;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ListasColumn;
+		private System.Windows.Forms.DataGridViewImageColumn EditColumn;
+		private System.Windows.Forms.DataGridViewImageColumn DeleteColumn;
 	}
 }
 

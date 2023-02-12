@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewPlaylistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewPlaylistForm.Designer.cs">
+      <DependentUpon>NewPlaylistForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewSongForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewPlaylistForm.resx">
+      <DependentUpon>NewPlaylistForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewSongForm.resx">
       <DependentUpon>NewSongForm.cs</DependentUpon>
@@ -119,7 +128,8 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\What_is_wrong_with.mp3" />
+    <Content Include="Resources\delete_FILL0_wght400_GRAD0_opsz48.png" />
+    <Content Include="Resources\edit_FILL0_wght400_GRAD0_opsz48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -125,7 +125,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADq
-        DgAAAk1TRnQBSQFMAgEBAgEAAZABAAGQAQABMgEAATIBAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DgAAAk1TRnQBSQFMAgEBAgEAAbABAAGwAQABMgEAATIBAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwAByAMAATIDAAEBAQABCAUAARABJxgAAYACAAGAAwACgAEAAYADAAGAAQABgAEAAoACAAPAAQABwAHc
         AcABAAHwAcoBpgEAATMFAAEzAQABMwEAATMBAAIzAgADFgEAAxwBAAMiAQADKQEAA1UBAANNAQADQgEA
         AzkBAAGAAXwB/wEAAlAB/wEAAZMBAAHWAQAB/wHsAcwBAAHGAdYB7wEAAdYC5wEAAZABqQGtAgAB/wEz
@@ -191,7 +191,35 @@
         DP8B8A8ADP8B8A8ADP8B8A8ADP8B8A8ADP8B8A8ADP8B8A8ADP8B8A8ACw==
 </value>
   </data>
+  <metadata name="ListasColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="EditColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="EditColumn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAN1JREFUaEPt
+        lN0JAkEMhLcES7MEO9BS7MCStAQ70QwYCEv27kUuE5gPhmP3Xr7ZvyGEEP/kZLlaHr9vKyD/tHxCMMY8
+        PZl8qxJnSybvQQl6LpZM3nOzUIFjgZWPbJW4W2iIZx7SkVUJmh3ILuxeiZeFgq3XZlUC8hSvUCb/nsZz
+        CdwRWnnIYh4rPM9TsZJ38H/eifl1KmNPHmAc/1OfeckfgeSrkHwVkq9C8lVIvgrJVyH5KlrLg9byIMq1
+        kwdRMNJCHkRJp408iKJZqOVBJu2hlweZONJCXgghjmCML58DJRYCO50BAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <metadata name="DeleteColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="DeleteColumn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAARNJREFUaEPt
+        mNFtw0AMQz1CRskGzUjZIBkhG7UjZIRukpLACTAOQpXiRH8UfMD7OdqUhfgn3owx5l9wh68/ynsO4faG
+        nzB7yN/kPVnX7DLZ8CNdJis90mX4rs7veJx1m81oY1+uQjpDWj6QzpCWD6QzqvIz/BieeDDBs8h5bUY1
+        Y4mq/AtGfuHBBM8i57UZkdN2qnIvACKn7VTlXgBETtupyr0AiJy2U5V7ARA5bacq9wIgctpOVe4FQOS0
+        narcC4DIaTtVuRcAkdN2qnIvACKn7VTlD8gHo9l/Xp5FzmszqhlLSMsH0hnS8oF0hrR8IJ0hLR9IZ3zD
+        /QClT9jO/PVY6RVK4BLKX4LdrZ/UjTFGybb9AI6B5DxwmaquAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="DatabaseAddingButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAHpJREFUaEPt
