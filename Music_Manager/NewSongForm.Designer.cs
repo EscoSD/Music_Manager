@@ -24,6 +24,7 @@ namespace Music_Manager {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
 			this.ImageLabel = new System.Windows.Forms.Label();
 			this.SongLabel = new System.Windows.Forms.Label();
 			this.ImageFilesPictureBox = new System.Windows.Forms.PictureBox();
@@ -33,6 +34,9 @@ namespace Music_Manager {
 			this.OkButton = new System.Windows.Forms.Button();
 			this.CancelationButton = new System.Windows.Forms.Button();
 			this.SongNameLabel = new System.Windows.Forms.Label();
+			this.NameLabel = new System.Windows.Forms.Label();
+			this.NameTextBox = new System.Windows.Forms.TextBox();
+			this.ToolTips = new System.Windows.Forms.ToolTip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.ImageFilesPictureBox)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -65,6 +69,7 @@ namespace Music_Manager {
 			this.ImageFilesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.ImageFilesPictureBox.TabIndex = 5;
 			this.ImageFilesPictureBox.TabStop = false;
+			this.ToolTips.SetToolTip(this.ImageFilesPictureBox, "Pulse para añadir una imagen a la foto.");
 			this.ImageFilesPictureBox.Click += new System.EventHandler(this.ImageFilesPictureBox_Click);
 			// 
 			// MusicFilesButton
@@ -85,6 +90,7 @@ namespace Music_Manager {
 			// MusicFileDialog
 			// 
 			this.MusicFileDialog.Filter = "MP3 Files (*.mp3)|*.mp3";
+			this.MusicFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.FilesOK);
 			// 
 			// OkButton
 			// 
@@ -120,11 +126,30 @@ namespace Music_Manager {
 			this.SongNameLabel.TabIndex = 9;
 			this.SongNameLabel.Text = "None";
 			// 
+			// NameLabel
+			// 
+			this.NameLabel.AutoSize = true;
+			this.NameLabel.Location = new System.Drawing.Point(158, 9);
+			this.NameLabel.Name = "NameLabel";
+			this.NameLabel.Size = new System.Drawing.Size(44, 13);
+			this.NameLabel.TabIndex = 10;
+			this.NameLabel.Text = "Nombre";
+			// 
+			// NameTextBox
+			// 
+			this.NameTextBox.Location = new System.Drawing.Point(102, 24);
+			this.NameTextBox.Name = "NameTextBox";
+			this.NameTextBox.Size = new System.Drawing.Size(100, 20);
+			this.NameTextBox.TabIndex = 11;
+			this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
+			// 
 			// NewSongForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(214, 291);
+			this.Controls.Add(this.NameTextBox);
+			this.Controls.Add(this.NameLabel);
 			this.Controls.Add(this.SongNameLabel);
 			this.Controls.Add(this.CancelationButton);
 			this.Controls.Add(this.OkButton);
@@ -136,6 +161,7 @@ namespace Music_Manager {
 			this.MaximizeBox = false;
 			this.Name = "NewSongForm";
 			this.Text = "Nueva Canción";
+			this.Load += new System.EventHandler(this.NewSongForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.ImageFilesPictureBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -152,5 +178,8 @@ namespace Music_Manager {
 		private System.Windows.Forms.Button OkButton;
 		private System.Windows.Forms.Button CancelationButton;
 		private System.Windows.Forms.Label SongNameLabel;
+		private System.Windows.Forms.ToolTip ToolTips;
+		private System.Windows.Forms.Label NameLabel;
+		private System.Windows.Forms.TextBox NameTextBox;
 	}
 }

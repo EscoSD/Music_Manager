@@ -19,11 +19,6 @@ namespace Music_Manager {
 
 		public NewSongForm() {
 			InitializeComponent();
-
-			builder.Server = "localhost";
-			builder.UserID = "root";
-			builder.Password = "";
-			builder.Database = "DINT_DATABASE";
 		}
 
 		private void MusicFilesButton_Click(object sender, EventArgs e) {
@@ -39,11 +34,39 @@ namespace Music_Manager {
 		}
 
 		private void FilesOK(object sender, CancelEventArgs e) {
-			if (!String.IsNullOrEmpty(MusicFileDialog.FileName) && !String.IsNullOrEmpty(ImagesFileDialog.FileName))
+			InfoOK();
+		}
+
+		private void NameTextBox_TextChanged(object sender, EventArgs e) {
+			InfoOK();
+		}
+
+		private void InfoOK() {
+			if (
+				!String.IsNullOrEmpty(MusicFileDialog.FileName)
+				&& !String.IsNullOrEmpty(ImagesFileDialog.FileName)
+				&& !String.IsNullOrEmpty(NameTextBox.Text)
+				)
 				OkButton.Enabled = true;
 		}
 
 		private void AcceptButton_Click(object sender, EventArgs e) {
+			try {
+				SongInsertion();
+			} catch (MySqlException) {
+				String message = "Por favor, conecta la base de datos.";
+				String caption = "Aviso!";
+				MessageBoxButtons buttons = MessageBoxButtons.OK;
+
+				// Reproducción de sonido de aviso
+				System.Media.SystemSounds.Exclamation.Play();
+
+				MessageBox.Show(message, caption, buttons);
+				DialogResult = DialogResult.Cancel;
+			}
+		}
+
+		private void SongInsertion() {
 			using (conn = new MySqlConnection(builder.ToString())) {
 				conn.Open();
 				string sql = "INSERT INTO Song (name, image, music) values(@name, @image, @music);";
@@ -65,7 +88,7 @@ namespace Music_Manager {
 					command.ExecuteNonQuery();
 
 					SongBoxControl = new SongBox(1,
-						SongNameLabel.Text.Split('.')[0],
+						NameTextBox.Text,
 						memoryStream.ToArray(),
 						mp3Bytes);
 				}
@@ -79,6 +102,13 @@ namespace Music_Manager {
 					}
 				}
 			}
+		}
+
+		private void NewSongForm_Load(object sender, EventArgs e) {
+			builder.Server = "192.168.1.23";
+			builder.UserID = "esco";
+			builder.Password = "lalimonada47";
+			builder.Database = "DINT_DATABASE";
 		}
 	}
 }

@@ -179,6 +179,21 @@ namespace Music_Manager {
 		}
 
 		private void NewPlaylistButton_Click(object sender, EventArgs e) {
+			try {
+				ListInsertion();
+			} catch (MySqlException) {
+				String message = "Por favor, conecta la base de datos.";
+				String caption = "Aviso!";
+				MessageBoxButtons buttons = MessageBoxButtons.OK;
+
+				// Reproducción de sonido de aviso
+				System.Media.SystemSounds.Exclamation.Play();
+
+				MessageBox.Show(message, caption, buttons);
+			}
+		}
+
+		private void ListInsertion() {
 			using (NewPlaylistForm playlistForm = new NewPlaylistForm()) {
 				if (playlistForm.ShowDialog() == DialogResult.OK) {
 					PlaylistsDGV.Rows.Add(
@@ -205,6 +220,7 @@ namespace Music_Manager {
 			if (e.RowIndex > -1) {
 				// Columna de nombre seleccionada
 				if (e.ColumnIndex == 0) {
+
 				}
 				// Columna de editar seleccionada
 				else if (e.ColumnIndex == 1) {
@@ -233,7 +249,7 @@ namespace Music_Manager {
 				// Columna de borrar seleccionada
 				else if (e.ColumnIndex == 2) {
 					// Creación de variables necesarias para la creación del mensaje
-					String message = "¿Eliminar los campos seleccionados?";
+					String message = "¿Eliminar la lista seleccionada?";
 					String caption = "Aviso!";
 					MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
 
@@ -263,13 +279,25 @@ namespace Music_Manager {
 			musicPlayer.settings.volume = VolumeTrackBar.Value;
 			//musicControl.DurationUnitChange += new WMPLib._WMPOCXEvents_DurationUnitChangeEventHandler(DurationTracker);
 
-			builder.Server = "localhost";
-			builder.UserID = "root";
-			builder.Password = "";
+			builder.Server = "192.168.1.23";
+			builder.UserID = "esco";
+			builder.Password = "lalimonada47";
 			builder.Database = "DINT_DATABASE";
 
-			ChargeFlowLayout();
-			ChargePlaylistsDGV();
+			try {
+				ChargeFlowLayout();
+				ChargePlaylistsDGV();
+			} catch(MySqlException) {
+				String message = "Por favor, conecta la base de datos.";
+				String caption = "Aviso!";
+				MessageBoxButtons buttons = MessageBoxButtons.OK;
+
+				// Reproducción de sonido de aviso
+				System.Media.SystemSounds.Exclamation.Play();
+
+				MessageBox.Show(message, caption, buttons);
+			}
+			
 		}
 	}
 }

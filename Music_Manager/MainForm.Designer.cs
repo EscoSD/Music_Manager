@@ -215,9 +215,10 @@ namespace Music_Manager {
 			// 
 			// SongImagePB
 			// 
+			this.SongImagePB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.SongImagePB.BackColor = System.Drawing.SystemColors.Control;
 			this.SongImagePB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.SongImagePB.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.SongImagePB.Location = new System.Drawing.Point(0, 0);
 			this.SongImagePB.Name = "SongImagePB";
 			this.SongImagePB.Size = new System.Drawing.Size(602, 333);
