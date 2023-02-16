@@ -33,6 +33,7 @@ namespace Music_Manager {
 			this.EditColumn = new System.Windows.Forms.DataGridViewImageColumn();
 			this.DeleteColumn = new System.Windows.Forms.DataGridViewImageColumn();
 			this.SearchPage = new System.Windows.Forms.TabPage();
+			this.SongSearchLabel = new System.Windows.Forms.Label();
 			this.DatabaseAddingButton = new System.Windows.Forms.Button();
 			this.SongsContainer = new System.Windows.Forms.FlowLayoutPanel();
 			this.FilterTextBox = new System.Windows.Forms.TextBox();
@@ -55,6 +56,7 @@ namespace Music_Manager {
 			this.SearchPageButton = new System.Windows.Forms.Button();
 			this.ControllerPageButton = new System.Windows.Forms.Button();
 			this.NewPlaylistButton = new System.Windows.Forms.Button();
+			this.ToolTips = new System.Windows.Forms.ToolTip(this.components);
 			this.ListsPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PlaylistsDGV)).BeginInit();
 			this.SearchPage.SuspendLayout();
@@ -134,6 +136,7 @@ namespace Music_Manager {
 			// SearchPage
 			// 
 			this.SearchPage.BackColor = System.Drawing.SystemColors.Control;
+			this.SearchPage.Controls.Add(this.SongSearchLabel);
 			this.SearchPage.Controls.Add(this.DatabaseAddingButton);
 			this.SearchPage.Controls.Add(this.SongsContainer);
 			this.SearchPage.Controls.Add(this.FilterTextBox);
@@ -144,6 +147,15 @@ namespace Music_Manager {
 			this.SearchPage.TabIndex = 1;
 			this.SearchPage.Text = "tabPage2";
 			// 
+			// SongSearchLabel
+			// 
+			this.SongSearchLabel.AutoSize = true;
+			this.SongSearchLabel.Location = new System.Drawing.Point(20, 7);
+			this.SongSearchLabel.Name = "SongSearchLabel";
+			this.SongSearchLabel.Size = new System.Drawing.Size(40, 13);
+			this.SongSearchLabel.TabIndex = 4;
+			this.SongSearchLabel.Text = "Buscar";
+			// 
 			// DatabaseAddingButton
 			// 
 			this.DatabaseAddingButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -153,6 +165,7 @@ namespace Music_Manager {
 			this.DatabaseAddingButton.Name = "DatabaseAddingButton";
 			this.DatabaseAddingButton.Size = new System.Drawing.Size(40, 40);
 			this.DatabaseAddingButton.TabIndex = 3;
+			this.ToolTips.SetToolTip(this.DatabaseAddingButton, "Pulse para añadir una nueva canción.");
 			this.DatabaseAddingButton.UseVisualStyleBackColor = true;
 			this.DatabaseAddingButton.Click += new System.EventHandler(this.DatabaseAddingButton_Click);
 			// 
@@ -169,7 +182,7 @@ namespace Music_Manager {
 			// 
 			// FilterTextBox
 			// 
-			this.FilterTextBox.Location = new System.Drawing.Point(6, 18);
+			this.FilterTextBox.Location = new System.Drawing.Point(22, 27);
 			this.FilterTextBox.Name = "FilterTextBox";
 			this.FilterTextBox.Size = new System.Drawing.Size(100, 20);
 			this.FilterTextBox.TabIndex = 0;
@@ -178,6 +191,7 @@ namespace Music_Manager {
 			// ControllerPage
 			// 
 			this.ControllerPage.BackColor = System.Drawing.SystemColors.Control;
+			this.ControllerPage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.ControllerPage.Controls.Add(this.ImagePanel);
 			this.ControllerPage.Controls.Add(this.ControllerPanel);
 			this.ControllerPage.Location = new System.Drawing.Point(4, 24);
@@ -189,23 +203,24 @@ namespace Music_Manager {
 			// 
 			// ImagePanel
 			// 
-			this.ImagePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+			this.ImagePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.ImagePanel.BackColor = System.Drawing.Color.Transparent;
+			this.ImagePanel.BackColor = System.Drawing.Color.Silver;
+			this.ImagePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.ImagePanel.Controls.Add(this.SongImagePB);
 			this.ImagePanel.Location = new System.Drawing.Point(6, 6);
 			this.ImagePanel.Name = "ImagePanel";
-			this.ImagePanel.Size = new System.Drawing.Size(606, 335);
+			this.ImagePanel.Size = new System.Drawing.Size(604, 335);
 			this.ImagePanel.TabIndex = 1;
 			// 
 			// SongImagePB
 			// 
 			this.SongImagePB.BackColor = System.Drawing.SystemColors.Control;
+			this.SongImagePB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.SongImagePB.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.SongImagePB.Location = new System.Drawing.Point(0, 0);
 			this.SongImagePB.Name = "SongImagePB";
-			this.SongImagePB.Size = new System.Drawing.Size(606, 335);
+			this.SongImagePB.Size = new System.Drawing.Size(602, 333);
 			this.SongImagePB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.SongImagePB.TabIndex = 0;
 			this.SongImagePB.TabStop = false;
@@ -226,9 +241,9 @@ namespace Music_Manager {
 			this.ControllerPanel.Controls.Add(this.PreviousButton);
 			this.ControllerPanel.Controls.Add(this.NextButton);
 			this.ControllerPanel.Controls.Add(this.PlayButton);
-			this.ControllerPanel.Location = new System.Drawing.Point(6, 347);
+			this.ControllerPanel.Location = new System.Drawing.Point(6, 345);
 			this.ControllerPanel.Name = "ControllerPanel";
-			this.ControllerPanel.Size = new System.Drawing.Size(606, 217);
+			this.ControllerPanel.Size = new System.Drawing.Size(604, 217);
 			this.ControllerPanel.TabIndex = 0;
 			// 
 			// SongNameLabel
@@ -236,7 +251,7 @@ namespace Music_Manager {
 			this.SongNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.SongNameLabel.AutoSize = true;
 			this.SongNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.SongNameLabel.Location = new System.Drawing.Point(3, 12);
+			this.SongNameLabel.Location = new System.Drawing.Point(2, 12);
 			this.SongNameLabel.Name = "SongNameLabel";
 			this.SongNameLabel.Size = new System.Drawing.Size(63, 25);
 			this.SongNameLabel.TabIndex = 11;
@@ -246,7 +261,7 @@ namespace Music_Manager {
 			// 
 			this.VolumePictureBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.VolumePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("VolumePictureBox.Image")));
-			this.VolumePictureBox.Location = new System.Drawing.Point(553, 151);
+			this.VolumePictureBox.Location = new System.Drawing.Point(552, 151);
 			this.VolumePictureBox.Name = "VolumePictureBox";
 			this.VolumePictureBox.Size = new System.Drawing.Size(30, 30);
 			this.VolumePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -257,7 +272,7 @@ namespace Music_Manager {
 			// 
 			this.SongDurationLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.SongDurationLabel.AutoSize = true;
-			this.SongDurationLabel.Location = new System.Drawing.Point(428, 96);
+			this.SongDurationLabel.Location = new System.Drawing.Point(427, 96);
 			this.SongDurationLabel.Name = "SongDurationLabel";
 			this.SongDurationLabel.Size = new System.Drawing.Size(28, 13);
 			this.SongDurationLabel.TabIndex = 9;
@@ -267,7 +282,7 @@ namespace Music_Manager {
 			// 
 			this.SongCurrentTimeLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.SongCurrentTimeLabel.AutoSize = true;
-			this.SongCurrentTimeLabel.Location = new System.Drawing.Point(151, 94);
+			this.SongCurrentTimeLabel.Location = new System.Drawing.Point(150, 94);
 			this.SongCurrentTimeLabel.Name = "SongCurrentTimeLabel";
 			this.SongCurrentTimeLabel.Size = new System.Drawing.Size(28, 13);
 			this.SongCurrentTimeLabel.TabIndex = 8;
@@ -276,7 +291,7 @@ namespace Music_Manager {
 			// VolumeTrackBar
 			// 
 			this.VolumeTrackBar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.VolumeTrackBar.Location = new System.Drawing.Point(558, 52);
+			this.VolumeTrackBar.Location = new System.Drawing.Point(557, 52);
 			this.VolumeTrackBar.Maximum = 100;
 			this.VolumeTrackBar.Name = "VolumeTrackBar";
 			this.VolumeTrackBar.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -289,7 +304,7 @@ namespace Music_Manager {
 			// DurationTrackBar
 			// 
 			this.DurationTrackBar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.DurationTrackBar.Location = new System.Drawing.Point(142, 62);
+			this.DurationTrackBar.Location = new System.Drawing.Point(141, 62);
 			this.DurationTrackBar.Name = "DurationTrackBar";
 			this.DurationTrackBar.Size = new System.Drawing.Size(323, 45);
 			this.DurationTrackBar.TabIndex = 6;
@@ -300,7 +315,7 @@ namespace Music_Manager {
 			this.ShuffleButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.ShuffleButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ShuffleButton.BackgroundImage")));
 			this.ShuffleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.ShuffleButton.Location = new System.Drawing.Point(146, 132);
+			this.ShuffleButton.Location = new System.Drawing.Point(145, 132);
 			this.ShuffleButton.Name = "ShuffleButton";
 			this.ShuffleButton.Size = new System.Drawing.Size(50, 50);
 			this.ShuffleButton.TabIndex = 4;
@@ -312,7 +327,7 @@ namespace Music_Manager {
 			this.LoopButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.LoopButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LoopButton.BackgroundImage")));
 			this.LoopButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.LoopButton.Location = new System.Drawing.Point(410, 132);
+			this.LoopButton.Location = new System.Drawing.Point(409, 132);
 			this.LoopButton.Name = "LoopButton";
 			this.LoopButton.Size = new System.Drawing.Size(50, 50);
 			this.LoopButton.TabIndex = 3;
@@ -324,7 +339,7 @@ namespace Music_Manager {
 			this.PreviousButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.PreviousButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PreviousButton.BackgroundImage")));
 			this.PreviousButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.PreviousButton.Location = new System.Drawing.Point(212, 132);
+			this.PreviousButton.Location = new System.Drawing.Point(211, 132);
 			this.PreviousButton.Name = "PreviousButton";
 			this.PreviousButton.Size = new System.Drawing.Size(50, 50);
 			this.PreviousButton.TabIndex = 2;
@@ -336,7 +351,7 @@ namespace Music_Manager {
 			this.NextButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.NextButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NextButton.BackgroundImage")));
 			this.NextButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.NextButton.Location = new System.Drawing.Point(344, 132);
+			this.NextButton.Location = new System.Drawing.Point(343, 132);
 			this.NextButton.Name = "NextButton";
 			this.NextButton.Size = new System.Drawing.Size(50, 50);
 			this.NextButton.TabIndex = 1;
@@ -348,7 +363,7 @@ namespace Music_Manager {
 			this.PlayButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.PlayButton.ImageIndex = 0;
 			this.PlayButton.ImageList = this.PlayImageList;
-			this.PlayButton.Location = new System.Drawing.Point(278, 132);
+			this.PlayButton.Location = new System.Drawing.Point(277, 132);
 			this.PlayButton.Name = "PlayButton";
 			this.PlayButton.Size = new System.Drawing.Size(50, 50);
 			this.PlayButton.TabIndex = 0;
@@ -399,11 +414,13 @@ namespace Music_Manager {
 			// 
 			// NewPlaylistButton
 			// 
+			this.NewPlaylistButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NewPlaylistButton.BackgroundImage")));
+			this.NewPlaylistButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.NewPlaylistButton.Location = new System.Drawing.Point(13, 55);
 			this.NewPlaylistButton.Name = "NewPlaylistButton";
-			this.NewPlaylistButton.Size = new System.Drawing.Size(64, 38);
+			this.NewPlaylistButton.Size = new System.Drawing.Size(40, 40);
 			this.NewPlaylistButton.TabIndex = 4;
-			this.NewPlaylistButton.Text = "Nueva Lista";
+			this.ToolTips.SetToolTip(this.NewPlaylistButton, "Pulse para crear una nueva lista de reproducción.");
 			this.NewPlaylistButton.UseVisualStyleBackColor = true;
 			this.NewPlaylistButton.Click += new System.EventHandler(this.NewPlaylistButton_Click);
 			// 
@@ -421,6 +438,7 @@ namespace Music_Manager {
 			this.MinimumSize = new System.Drawing.Size(949, 572);
 			this.Name = "MainForm";
 			this.Text = "Octavia";
+			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.ListsPanel.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.PlaylistsDGV)).EndInit();
 			this.SearchPage.ResumeLayout(false);
@@ -468,6 +486,8 @@ namespace Music_Manager {
 		private System.Windows.Forms.DataGridViewTextBoxColumn ListasColumn;
 		private System.Windows.Forms.DataGridViewImageColumn EditColumn;
 		private System.Windows.Forms.DataGridViewImageColumn DeleteColumn;
+		private System.Windows.Forms.Label SongSearchLabel;
+		private System.Windows.Forms.ToolTip ToolTips;
 	}
 }
 

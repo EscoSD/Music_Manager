@@ -20,9 +20,9 @@ namespace Music_Manager {
 		public NewSongForm() {
 			InitializeComponent();
 
-			builder.Server = "192.168.1.22";
-			builder.UserID = "esco";
-			builder.Password = "lalimonada47";
+			builder.Server = "localhost";
+			builder.UserID = "root";
+			builder.Password = "";
 			builder.Database = "DINT_DATABASE";
 		}
 
@@ -40,7 +40,7 @@ namespace Music_Manager {
 
 		private void FilesOK(object sender, CancelEventArgs e) {
 			if (!String.IsNullOrEmpty(MusicFileDialog.FileName) && !String.IsNullOrEmpty(ImagesFileDialog.FileName))
-				AcceptButton.Enabled = true;
+				OkButton.Enabled = true;
 		}
 
 		private void AcceptButton_Click(object sender, EventArgs e) {

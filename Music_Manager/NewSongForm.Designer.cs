@@ -30,8 +30,8 @@ namespace Music_Manager {
 			this.MusicFilesButton = new System.Windows.Forms.Button();
 			this.ImagesFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.MusicFileDialog = new System.Windows.Forms.OpenFileDialog();
-			this.AcceptButton = new System.Windows.Forms.Button();
-			this.CancelButton = new System.Windows.Forms.Button();
+			this.OkButton = new System.Windows.Forms.Button();
+			this.CancelationButton = new System.Windows.Forms.Button();
 			this.SongNameLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.ImageFilesPictureBox)).BeginInit();
 			this.SuspendLayout();
@@ -86,27 +86,27 @@ namespace Music_Manager {
 			// 
 			this.MusicFileDialog.Filter = "MP3 Files (*.mp3)|*.mp3";
 			// 
-			// AcceptButton
+			// OkButton
 			// 
-			this.AcceptButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.AcceptButton.Enabled = false;
-			this.AcceptButton.Location = new System.Drawing.Point(46, 259);
-			this.AcceptButton.Name = "AcceptButton";
-			this.AcceptButton.Size = new System.Drawing.Size(75, 23);
-			this.AcceptButton.TabIndex = 7;
-			this.AcceptButton.Text = "Aceptar";
-			this.AcceptButton.UseVisualStyleBackColor = true;
-			this.AcceptButton.Click += new System.EventHandler(this.AcceptButton_Click);
+			this.OkButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.OkButton.Enabled = false;
+			this.OkButton.Location = new System.Drawing.Point(46, 259);
+			this.OkButton.Name = "OkButton";
+			this.OkButton.Size = new System.Drawing.Size(75, 23);
+			this.OkButton.TabIndex = 7;
+			this.OkButton.Text = "Aceptar";
+			this.OkButton.UseVisualStyleBackColor = true;
+			this.OkButton.Click += new System.EventHandler(this.AcceptButton_Click);
 			// 
-			// CancelButton
+			// CancelationButton
 			// 
-			this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.CancelButton.Location = new System.Drawing.Point(127, 259);
-			this.CancelButton.Name = "CancelButton";
-			this.CancelButton.Size = new System.Drawing.Size(75, 23);
-			this.CancelButton.TabIndex = 8;
-			this.CancelButton.Text = "Cancelar";
-			this.CancelButton.UseVisualStyleBackColor = true;
+			this.CancelationButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.CancelationButton.Location = new System.Drawing.Point(127, 259);
+			this.CancelationButton.Name = "CancelationButton";
+			this.CancelationButton.Size = new System.Drawing.Size(75, 23);
+			this.CancelationButton.TabIndex = 8;
+			this.CancelationButton.Text = "Cancelar";
+			this.CancelationButton.UseVisualStyleBackColor = true;
 			// 
 			// SongNameLabel
 			// 
@@ -126,8 +126,8 @@ namespace Music_Manager {
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(214, 291);
 			this.Controls.Add(this.SongNameLabel);
-			this.Controls.Add(this.CancelButton);
-			this.Controls.Add(this.AcceptButton);
+			this.Controls.Add(this.CancelationButton);
+			this.Controls.Add(this.OkButton);
 			this.Controls.Add(this.MusicFilesButton);
 			this.Controls.Add(this.ImageFilesPictureBox);
 			this.Controls.Add(this.SongLabel);
@@ -149,8 +149,8 @@ namespace Music_Manager {
 		private System.Windows.Forms.Button MusicFilesButton;
 		private System.Windows.Forms.OpenFileDialog ImagesFileDialog;
 		private System.Windows.Forms.OpenFileDialog MusicFileDialog;
-		private System.Windows.Forms.Button AcceptButton;
-		private System.Windows.Forms.Button CancelButton;
+		private System.Windows.Forms.Button OkButton;
+		private System.Windows.Forms.Button CancelationButton;
 		private System.Windows.Forms.Label SongNameLabel;
 	}
 }
