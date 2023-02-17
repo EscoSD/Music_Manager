@@ -105,6 +105,7 @@ namespace Music_Manager {
 			this.ImageFilesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.ImageFilesPictureBox.TabIndex = 14;
 			this.ImageFilesPictureBox.TabStop = false;
+			this.ToolTips.SetToolTip(this.ImageFilesPictureBox, "Pulse para seleccionar una imagen.");
 			this.ImageFilesPictureBox.Click += new System.EventHandler(this.ImageFilesPictureBox_Click);
 			// 
 			// SongLabel
@@ -128,10 +129,14 @@ namespace Music_Manager {
 			// 
 			// PlaylistListBox
 			// 
+			this.PlaylistListBox.Enabled = false;
+			this.PlaylistListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.PlaylistListBox.FormattingEnabled = true;
-			this.PlaylistListBox.Location = new System.Drawing.Point(230, 98);
+			this.PlaylistListBox.ItemHeight = 16;
+			this.PlaylistListBox.Location = new System.Drawing.Point(227, 69);
 			this.PlaylistListBox.Name = "PlaylistListBox";
-			this.PlaylistListBox.Size = new System.Drawing.Size(145, 147);
+			this.PlaylistListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+			this.PlaylistListBox.Size = new System.Drawing.Size(145, 132);
 			this.PlaylistListBox.TabIndex = 21;
 			this.ToolTips.SetToolTip(this.PlaylistListBox, "Selecciona las listas de reproducción.");
 			// 
@@ -156,7 +161,7 @@ namespace Music_Manager {
 			// PlaylistLabel
 			// 
 			this.PlaylistLabel.AutoSize = true;
-			this.PlaylistLabel.Location = new System.Drawing.Point(230, 79);
+			this.PlaylistLabel.Location = new System.Drawing.Point(227, 50);
 			this.PlaylistLabel.Name = "PlaylistLabel";
 			this.PlaylistLabel.Size = new System.Drawing.Size(119, 13);
 			this.PlaylistLabel.TabIndex = 23;

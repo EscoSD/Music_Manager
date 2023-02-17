@@ -31,6 +31,7 @@ namespace Music_Manager {
 			this.OptionsButton = new System.Windows.Forms.Button();
 			this.SongNameLabel = new System.Windows.Forms.Label();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.ToolTips = new System.Windows.Forms.ToolTip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.VideoImageBox)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -65,7 +66,7 @@ namespace Music_Manager {
 			this.OptionsButton.Size = new System.Drawing.Size(37, 37);
 			this.OptionsButton.TabIndex = 2;
 			this.OptionsButton.UseVisualStyleBackColor = true;
-			this.OptionsButton.Click += new System.EventHandler(this.OptionsButton_Click);
+			this.OptionsButton.Click += new System.EventHandler(this.EditButton_Click);
 			// 
 			// SongNameLabel
 			// 
@@ -105,5 +106,6 @@ namespace Music_Manager {
 		private System.Windows.Forms.Button OptionsButton;
 		private System.Windows.Forms.Label SongNameLabel;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolTip ToolTips;
 	}
 }

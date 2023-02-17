@@ -685,13 +685,17 @@
   </data>
   <data name="OptionsButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAKBJREFUaEPt
-        0+EJwjAQhuGM0hEcoRvUERzVDXQTu4HeKwbyr9cmoMj7wAdt4e6akBRJkiRJkvTfTpElMr3f8s4R6vZg
-        BjXMHOISeX7yiMyRjHuk1t34kEBvZtQ6ZndbI7UhuUa2sPNtDcksnN5tDYvp9s0FMLtbe4RoeOQI8ZxB
-        73bDhhwhcKHY1b2XmB/KLrhiBrOGXWJJkiRJkvRzSnkBd7A02gMYo18AAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAN1JREFUaEPt
+        lN0JAkEMhLcES7MEO9BS7MCStAQ70QwYCEv27kUuE5gPhmP3Xr7ZvyGEEP/kZLlaHr9vKyD/tHxCMMY8
+        PZl8qxJnSybvQQl6LpZM3nOzUIFjgZWPbJW4W2iIZx7SkVUJmh3ILuxeiZeFgq3XZlUC8hSvUCb/nsZz
+        CdwRWnnIYh4rPM9TsZJ38H/eifl1KmNPHmAc/1OfeckfgeSrkHwVkq9C8lVIvgrJVyH5KlrLg9byIMq1
+        kwdRMNJCHkRJp408iKJZqOVBJu2hlweZONJCXgghjmCML58DJRYCO50BAAAAAElFTkSuQmCC
 </value>
   </data>
   <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="ToolTips.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>172, 17</value>
   </metadata>
 </root>
