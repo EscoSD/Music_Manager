@@ -12,9 +12,9 @@ namespace Music_Manager {
 		/// <returns>La conexión a la base de datos.</returns>
 		public static MySqlConnection GetConnection() {
 			MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder {
-				Server = "192.168.1.23",
-				UserID = "esco",
-				Password = "lalimonada47",
+				Server = "localhost",
+				UserID = "root",
+				Password = "",
 				Database = "DINT_DATABASE"
 			};
 
