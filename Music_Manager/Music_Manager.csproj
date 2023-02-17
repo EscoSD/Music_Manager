@@ -47,6 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataUtilities.cs" />
+    <Compile Include="EditSongForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditSongForm.Designer.cs">
+      <DependentUpon>EditSongForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewPlaylistForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +80,9 @@
     <Compile Include="SongBox.Designer.cs">
       <DependentUpon>SongBox.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="EditSongForm.resx">
+      <DependentUpon>EditSongForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -57,6 +57,7 @@ namespace Music_Manager {
 			this.ControllerPageButton = new System.Windows.Forms.Button();
 			this.NewPlaylistButton = new System.Windows.Forms.Button();
 			this.ToolTips = new System.Windows.Forms.ToolTip(this.components);
+			this.PlaylistsLabel = new System.Windows.Forms.Label();
 			this.ListsPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PlaylistsDGV)).BeginInit();
 			this.SearchPage.SuspendLayout();
@@ -140,10 +141,10 @@ namespace Music_Manager {
 			this.SearchPage.Controls.Add(this.DatabaseAddingButton);
 			this.SearchPage.Controls.Add(this.SongsContainer);
 			this.SearchPage.Controls.Add(this.FilterTextBox);
-			this.SearchPage.Location = new System.Drawing.Point(4, 24);
+			this.SearchPage.Location = new System.Drawing.Point(4, 5);
 			this.SearchPage.Name = "SearchPage";
 			this.SearchPage.Padding = new System.Windows.Forms.Padding(3);
-			this.SearchPage.Size = new System.Drawing.Size(618, 570);
+			this.SearchPage.Size = new System.Drawing.Size(618, 582);
 			this.SearchPage.TabIndex = 1;
 			this.SearchPage.Text = "tabPage2";
 			// 
@@ -175,9 +176,10 @@ namespace Music_Manager {
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.SongsContainer.AutoScroll = true;
-			this.SongsContainer.Location = new System.Drawing.Point(6, 54);
+			this.SongsContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.SongsContainer.Location = new System.Drawing.Point(3, 54);
 			this.SongsContainer.Name = "SongsContainer";
-			this.SongsContainer.Size = new System.Drawing.Size(606, 510);
+			this.SongsContainer.Size = new System.Drawing.Size(612, 510);
 			this.SongsContainer.TabIndex = 2;
 			// 
 			// FilterTextBox
@@ -194,34 +196,34 @@ namespace Music_Manager {
 			this.ControllerPage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.ControllerPage.Controls.Add(this.ImagePanel);
 			this.ControllerPage.Controls.Add(this.ControllerPanel);
-			this.ControllerPage.Location = new System.Drawing.Point(4, 24);
+			this.ControllerPage.Location = new System.Drawing.Point(4, 5);
 			this.ControllerPage.Name = "ControllerPage";
 			this.ControllerPage.Padding = new System.Windows.Forms.Padding(3);
-			this.ControllerPage.Size = new System.Drawing.Size(618, 570);
+			this.ControllerPage.Size = new System.Drawing.Size(618, 582);
 			this.ControllerPage.TabIndex = 0;
 			this.ControllerPage.Text = "tabPage1";
 			// 
 			// ImagePanel
 			// 
-			this.ImagePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.ImagePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.ImagePanel.BackColor = System.Drawing.Color.Silver;
 			this.ImagePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.ImagePanel.Controls.Add(this.SongImagePB);
 			this.ImagePanel.Location = new System.Drawing.Point(6, 6);
 			this.ImagePanel.Name = "ImagePanel";
-			this.ImagePanel.Size = new System.Drawing.Size(604, 335);
+			this.ImagePanel.Size = new System.Drawing.Size(604, 347);
 			this.ImagePanel.TabIndex = 1;
 			// 
 			// SongImagePB
 			// 
-			this.SongImagePB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.SongImagePB.BackColor = System.Drawing.SystemColors.Control;
 			this.SongImagePB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.SongImagePB.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.SongImagePB.Location = new System.Drawing.Point(0, 0);
 			this.SongImagePB.Name = "SongImagePB";
-			this.SongImagePB.Size = new System.Drawing.Size(602, 333);
+			this.SongImagePB.Size = new System.Drawing.Size(602, 345);
 			this.SongImagePB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.SongImagePB.TabIndex = 0;
 			this.SongImagePB.TabStop = false;
@@ -242,7 +244,7 @@ namespace Music_Manager {
 			this.ControllerPanel.Controls.Add(this.PreviousButton);
 			this.ControllerPanel.Controls.Add(this.NextButton);
 			this.ControllerPanel.Controls.Add(this.PlayButton);
-			this.ControllerPanel.Location = new System.Drawing.Point(6, 345);
+			this.ControllerPanel.Location = new System.Drawing.Point(6, 357);
 			this.ControllerPanel.Name = "ControllerPanel";
 			this.ControllerPanel.Size = new System.Drawing.Size(604, 217);
 			this.ControllerPanel.TabIndex = 0;
@@ -379,12 +381,12 @@ namespace Music_Manager {
 			this.TabsController.Appearance = System.Windows.Forms.TabAppearance.Buttons;
 			this.TabsController.Controls.Add(this.ControllerPage);
 			this.TabsController.Controls.Add(this.SearchPage);
-			this.TabsController.ItemSize = new System.Drawing.Size(20, 20);
-			this.TabsController.Location = new System.Drawing.Point(295, 31);
+			this.TabsController.ItemSize = new System.Drawing.Size(0, 1);
+			this.TabsController.Location = new System.Drawing.Point(295, 38);
 			this.TabsController.Multiline = true;
 			this.TabsController.Name = "TabsController";
 			this.TabsController.SelectedIndex = 0;
-			this.TabsController.Size = new System.Drawing.Size(626, 598);
+			this.TabsController.Size = new System.Drawing.Size(626, 591);
 			this.TabsController.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
 			this.TabsController.TabIndex = 0;
 			// 
@@ -417,7 +419,7 @@ namespace Music_Manager {
 			// 
 			this.NewPlaylistButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NewPlaylistButton.BackgroundImage")));
 			this.NewPlaylistButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.NewPlaylistButton.Location = new System.Drawing.Point(13, 55);
+			this.NewPlaylistButton.Location = new System.Drawing.Point(249, 55);
 			this.NewPlaylistButton.Name = "NewPlaylistButton";
 			this.NewPlaylistButton.Size = new System.Drawing.Size(40, 40);
 			this.NewPlaylistButton.TabIndex = 4;
@@ -425,12 +427,27 @@ namespace Music_Manager {
 			this.NewPlaylistButton.UseVisualStyleBackColor = true;
 			this.NewPlaylistButton.Click += new System.EventHandler(this.NewPlaylistButton_Click);
 			// 
+			// ToolTips
+			// 
+			this.ToolTips.IsBalloon = true;
+			// 
+			// PlaylistsLabel
+			// 
+			this.PlaylistsLabel.AutoSize = true;
+			this.PlaylistsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
+			this.PlaylistsLabel.Location = new System.Drawing.Point(8, 69);
+			this.PlaylistsLabel.Name = "PlaylistsLabel";
+			this.PlaylistsLabel.Size = new System.Drawing.Size(224, 26);
+			this.PlaylistsLabel.TabIndex = 5;
+			this.PlaylistsLabel.Text = "Lisas de reproducción";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Control;
 			this.ClientSize = new System.Drawing.Size(933, 641);
+			this.Controls.Add(this.PlaylistsLabel);
 			this.Controls.Add(this.NewPlaylistButton);
 			this.Controls.Add(this.ListsPanel);
 			this.Controls.Add(this.SearchPageButton);
@@ -454,6 +471,7 @@ namespace Music_Manager {
 			((System.ComponentModel.ISupportInitialize)(this.DurationTrackBar)).EndInit();
 			this.TabsController.ResumeLayout(false);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -489,6 +507,7 @@ namespace Music_Manager {
 		private System.Windows.Forms.DataGridViewImageColumn DeleteColumn;
 		private System.Windows.Forms.Label SongSearchLabel;
 		private System.Windows.Forms.ToolTip ToolTips;
+		private System.Windows.Forms.Label PlaylistsLabel;
 	}
 }
 

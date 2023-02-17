@@ -161,7 +161,6 @@ namespace Music_Manager {
 			this.MaximizeBox = false;
 			this.Name = "NewSongForm";
 			this.Text = "Nueva Canción";
-			this.Load += new System.EventHandler(this.NewSongForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.ImageFilesPictureBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

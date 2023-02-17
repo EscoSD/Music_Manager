@@ -1,20 +1,12 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Music_Manager {
 	public partial class NewSongForm : Form {
-
-		private readonly MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
-		private MySqlConnection conn;
 		public SongBox SongBoxControl { get; set; }
 
 		public NewSongForm() {
@@ -52,7 +44,7 @@ namespace Music_Manager {
 
 		private void AcceptButton_Click(object sender, EventArgs e) {
 			try {
-				SongInsertion();
+			SongInsertion();
 			} catch (MySqlException) {
 				String message = "Por favor, conecta la base de datos.";
 				String caption = "Aviso!";
@@ -67,7 +59,7 @@ namespace Music_Manager {
 		}
 
 		private void SongInsertion() {
-			using (conn = new MySqlConnection(builder.ToString())) {
+			using (MySqlConnection conn = DataUtilities.GetConnection()) {
 				conn.Open();
 				string sql = "INSERT INTO Song (name, image, music) values(@name, @image, @music);";
 
@@ -75,7 +67,7 @@ namespace Music_Manager {
 				using (MemoryStream memoryStream = new MemoryStream())
 				using (FileStream fileStream = new FileStream(MusicFileDialog.FileName, FileMode.Open, FileAccess.Read)) {
 
-					command.Parameters.Add("@name", MySqlDbType.Text).Value = SongNameLabel.Text.Split('.')[0];
+					command.Parameters.Add("@name", MySqlDbType.Text).Value = NameTextBox.Text;
 
 					Image image = ImageFilesPictureBox.Image;
 					image.Save(memoryStream, image.RawFormat);
@@ -95,20 +87,13 @@ namespace Music_Manager {
 
 				sql = "SELECT id FROM Song WHERE name = @name";
 				using (MySqlCommand command = new MySqlCommand(sql, conn)) {
-					command.Parameters.Add("@name", MySqlDbType.Text).Value = SongNameLabel.Text.Split('.')[0];
+					command.Parameters.Add("@name", MySqlDbType.Text).Value = NameTextBox.Text;
 					using (MySqlDataReader reader = command.ExecuteReader()) {
 						reader.Read();
 						SongBoxControl.SongId = Convert.ToInt32(reader["id"]);
 					}
 				}
 			}
-		}
-
-		private void NewSongForm_Load(object sender, EventArgs e) {
-			builder.Server = "192.168.1.23";
-			builder.UserID = "esco";
-			builder.Password = "lalimonada47";
-			builder.Database = "DINT_DATABASE";
 		}
 	}
 }

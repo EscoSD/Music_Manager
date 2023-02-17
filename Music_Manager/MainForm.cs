@@ -1,16 +1,13 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.IO;
 using System.Windows.Forms;
 using WMPLib;
-using MySql.Data.MySqlClient;
-using System.IO;
-using System.Drawing;
 
 namespace Music_Manager {
 	public partial class MainForm : Form {
 
 		public WindowsMediaPlayer musicPlayer = new WindowsMediaPlayer();
-		private readonly MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
-		private MySqlConnection conn;
 
 		public MainForm() {
 			InitializeComponent();
@@ -67,14 +64,17 @@ namespace Music_Manager {
 		}
 
 		private void SongBoxPlayButton_Click(object sender, EventArgs e) {
-			MusicReproduction(((SongBox) sender).Music, ((SongBox)sender).Image, ((SongBox)sender).SongName);
+			MusicReproduction(((SongBox)sender).Music, ((SongBox)sender).Image, ((SongBox)sender).SongName);
 		}
 
 		private void OptionsBoxPlayButton_Click(object sender, EventArgs e) {
+			using (EditSongForm editSongForm = new EditSongForm((SongBox)sender)) {
+				editSongForm.ShowDialog();
+			}
 		}
 
 		private void ChargeFlowLayout() {
-			using (conn = new MySqlConnection(builder.ToString())) {
+			using (MySqlConnection conn = DataUtilities.GetConnection()) {
 				conn.Open();
 
 				string query = "SELECT * FROM Song";
@@ -83,7 +83,7 @@ namespace Music_Manager {
 					SongBox songBox;
 
 					while (reader.Read()) {
-						songBox = new SongBox (
+						songBox = new SongBox(
 								Convert.ToInt32(reader["id"]),
 								Convert.ToString(reader["name"]),
 								(byte[])reader["image"],
@@ -98,7 +98,7 @@ namespace Music_Manager {
 		}
 
 		private void ChargePlaylistsDGV() {
-			using (conn = new MySqlConnection(builder.ToString())) {
+			using (MySqlConnection conn = DataUtilities.GetConnection()) {
 				conn.Open();
 				string query = "SELECT * FROM Playlist";
 
@@ -106,7 +106,7 @@ namespace Music_Manager {
 				using (MySqlDataReader reader = command.ExecuteReader())
 					while (reader.Read())
 						PlaylistsDGV.Rows.Add(reader["name"]);
-				
+
 			}
 		}
 
@@ -141,7 +141,7 @@ namespace Music_Manager {
 			//string tempFile = @"..\..\Resources\tempFile.mp3";
 			string tempFile = Path.GetTempFileName();
 
-			SongImagePB.Image = SongBox.ByteToImage(image);
+			SongImagePB.Image = DataUtilities.ByteToImage(image);
 			SongNameLabel.Text = name;
 
 			//File.Move(tempFile, Path.ChangeExtension(tempFile, ".mp3"));
@@ -200,7 +200,7 @@ namespace Music_Manager {
 						playlistForm.PlaylistName
 					);
 
-					using (conn = new MySqlConnection(builder.ToString())) {
+					using (MySqlConnection conn = DataUtilities.GetConnection()) {
 						conn.Open();
 						string sql = "INSERT INTO Playlist (name) values(@name);";
 
@@ -218,58 +218,73 @@ namespace Music_Manager {
 
 			// Se comprueba que la celda clicada no pertenezca al encabezado
 			if (e.RowIndex > -1) {
-				// Columna de nombre seleccionada
-				if (e.ColumnIndex == 0) {
-
-				}
-				// Columna de editar seleccionada
-				else if (e.ColumnIndex == 1) {
-
-					String oldName = PlaylistsDGV.Rows[e.RowIndex].Cells[0].Value.ToString();
-					using (NewPlaylistForm playlistForm = new NewPlaylistForm()) {
-
-						playlistForm.Text = "Editar Playlist";
-
-						if (playlistForm.ShowDialog() == DialogResult.OK) {
-							PlaylistsDGV.Rows[e.RowIndex].Cells[0].Value = playlistForm.PlaylistName;
-
-							using (conn = new MySqlConnection(builder.ToString())) {
-								conn.Open();
-								string sql = "UPDATE Playlist SET name = @NewName WHERE name = @name;";
-
-								using (MySqlCommand command = new MySqlCommand(sql, conn)) {
-									command.Parameters.Add("@name", MySqlDbType.Text).Value = oldName;
-									command.Parameters.Add("@NewName", MySqlDbType.Text).Value = playlistForm.PlaylistName;
-									command.ExecuteNonQuery();
-								}
-							}
-						}
-					}
-				}
-				// Columna de borrar seleccionada
-				else if (e.ColumnIndex == 2) {
-					// Creación de variables necesarias para la creación del mensaje
-					String message = "¿Eliminar la lista seleccionada?";
+				try {
+					DGVCellEvents(e);
+				} catch(MySqlException) {
+					String message = "Por favor, conecta la base de datos.";
 					String caption = "Aviso!";
-					MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
+					MessageBoxButtons buttons = MessageBoxButtons.OK;
 
 					// Reproducción de sonido de aviso
 					System.Media.SystemSounds.Exclamation.Play();
 
-					// Muestra el mensaje y recoge la salida
-					if (MessageBox.Show(message, caption, buttons) == DialogResult.OK) {
-						using (conn = new MySqlConnection(builder.ToString())) {
+					MessageBox.Show(message, caption, buttons);
+				}
+			}
+		}
+
+		private void DGVCellEvents(DataGridViewCellEventArgs e) {
+			// Columna de nombre seleccionada
+			if (e.ColumnIndex == 0) {
+
+			}
+			// Columna de editar seleccionada
+			else if (e.ColumnIndex == 1) {
+
+				String oldName = PlaylistsDGV.Rows[e.RowIndex].Cells[0].Value.ToString();
+				using (NewPlaylistForm playlistForm = new NewPlaylistForm()) {
+
+					playlistForm.Text = "Editar Playlist";
+
+					if (playlistForm.ShowDialog() == DialogResult.OK) {
+						PlaylistsDGV.Rows[e.RowIndex].Cells[0].Value = playlistForm.PlaylistName;
+
+						using (MySqlConnection conn = DataUtilities.GetConnection()) {
 							conn.Open();
-							string sql = "DELETE FROM Playlist WHERE name = @name";
+							string sql = "UPDATE Playlist SET name = @NewName WHERE name = @name;";
 
 							using (MySqlCommand command = new MySqlCommand(sql, conn)) {
-								command.Parameters.Add("@name", MySqlDbType.Text).Value = PlaylistsDGV.Rows[e.RowIndex].Cells[0].Value.ToString();
+								command.Parameters.Add("@name", MySqlDbType.Text).Value = oldName;
+								command.Parameters.Add("@NewName", MySqlDbType.Text).Value = playlistForm.PlaylistName;
 								command.ExecuteNonQuery();
 							}
 						}
-						// En caso de aceptar, se eliminan los índices seleccionados
-						PlaylistsDGV.Rows.RemoveAt(e.RowIndex);
 					}
+				}
+			}
+			// Columna de borrar seleccionada
+			else if (e.ColumnIndex == 2) {
+				// Creación de variables necesarias para la creación del mensaje
+				String message = "¿Eliminar la lista seleccionada?";
+				String caption = "Aviso!";
+				MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
+
+				// Reproducción de sonido de aviso
+				System.Media.SystemSounds.Exclamation.Play();
+
+				// Muestra el mensaje y recoge la salida
+				if (MessageBox.Show(message, caption, buttons) == DialogResult.OK) {
+					using (MySqlConnection conn = DataUtilities.GetConnection()) {
+						conn.Open();
+						string sql = "DELETE FROM Playlist WHERE name = @name";
+
+						using (MySqlCommand command = new MySqlCommand(sql, conn)) {
+							command.Parameters.Add("@name", MySqlDbType.Text).Value = PlaylistsDGV.Rows[e.RowIndex].Cells[0].Value.ToString();
+							command.ExecuteNonQuery();
+						}
+					}
+					// En caso de aceptar, se eliminan los índices seleccionados
+					PlaylistsDGV.Rows.RemoveAt(e.RowIndex);
 				}
 			}
 		}
@@ -279,15 +294,10 @@ namespace Music_Manager {
 			musicPlayer.settings.volume = VolumeTrackBar.Value;
 			//musicControl.DurationUnitChange += new WMPLib._WMPOCXEvents_DurationUnitChangeEventHandler(DurationTracker);
 
-			builder.Server = "192.168.1.23";
-			builder.UserID = "esco";
-			builder.Password = "lalimonada47";
-			builder.Database = "DINT_DATABASE";
-
 			try {
 				ChargeFlowLayout();
 				ChargePlaylistsDGV();
-			} catch(MySqlException) {
+			} catch (MySqlException) {
 				String message = "Por favor, conecta la base de datos.";
 				String caption = "Aviso!";
 				MessageBoxButtons buttons = MessageBoxButtons.OK;
@@ -297,7 +307,7 @@ namespace Music_Manager {
 
 				MessageBox.Show(message, caption, buttons);
 			}
-			
+
 		}
 	}
 }
